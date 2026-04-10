@@ -4,7 +4,6 @@ import { applyStaticFeatures } from "./features/static";
 import addStyleSheet from "./utilities/addStyleSheet";
 import { extractColorsAsRootVars } from "./utilities/colors";
 import debounce from "./utilities/debounce";
-import { isDevelopmentMode } from "./utilities/isDevelopmentMode";
 import isMutationSkippable from "./utilities/isMutationSkippable";
 import { getStorage } from "./utilities/storage";
 
@@ -16,11 +15,8 @@ import { getStorage } from "./utilities/storage";
  * - Extracts Twitter theme colors
  */
 
-export const addStylesheets = async () => {
+export const addStylesheets = () => {
   addStyleSheet("main", chrome.runtime.getURL("css/main.css"));
-  if (await isDevelopmentMode()) {
-    console.log("🚧 Development mode, not adding CDN-cached stylesheets");
-  }
 };
 
 const addMutationObserver = () => {
@@ -51,7 +47,7 @@ const addResizeListener = () => {
 };
 
 export const initializeExtension = async () => {
-  await addStylesheets();
+  addStylesheets();
 
   const allData = await getStorage(allSettingsKeys);
   applyStaticFeatures(allData);

@@ -1,7 +1,7 @@
 import createTweetLink from "../../utilities/createTweetLink";
 
 const tweet = {
-  text: "Minimal-Twitter makes 𝕏 much nicer and cleaner",
+  text: "More Minimal Twitter makes 𝕏 much nicer and cleaner",
   url: "https://github.com/notkainoa/more-minimal-twitter",
 };
 
