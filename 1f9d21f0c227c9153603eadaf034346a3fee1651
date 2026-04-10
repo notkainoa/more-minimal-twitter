@@ -1,0 +1,35 @@
+popup/package.json
+  5b8d28dd7cfa5f47 4,10-11,36
+popup/components/sections/NavigationSection.js
+  5b8d28dd7cfa5f47 116,118
+popup/next.config.js
+  5b8d28dd7cfa5f47 1-7
+package.json
+  5b8d28dd7cfa5f47 4
+popup/.eslintrc.json
+  5b8d28dd7cfa5f47 2
+popup/components/sections/AdvancedSection.js
+  5b8d28dd7cfa5f47 4,13-23,25-31
+content-scripts/package.json
+  5b8d28dd7cfa5f47 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.6",
+  "base_commit_sha": "1f9d21f0c227c9153603eadaf034346a3fee1651",
+  "prompts": {
+    "5b8d28dd7cfa5f47": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1a972a16-9756-48ea-80ec-033267116317",
+        "model": "default"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 35,
+      "total_deletions": 17,
+      "accepted_lines": 35,
+      "overriden_lines": 0
+    }
+  }
+}
