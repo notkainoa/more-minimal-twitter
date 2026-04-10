@@ -18,16 +18,13 @@ import { getStorage } from "./utilities/storage";
 
 export const addStylesheets = async () => {
   addStyleSheet("main", chrome.runtime.getURL("css/main.css"));
-  addStyleSheet("typefully", chrome.runtime.getURL("css/typefully.css"));
 
   // Only fetch from CDN in production
   if (!(await isDevelopmentMode())) {
     try {
       const mainStylesheetFromCDN = await fetch("https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/main.css");
-      const typefullyStylesheetFromCDN = await fetch("https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/typefully.css");
       const mainText = (await mainStylesheetFromCDN.text()).trim();
-      const typefullyText = (await typefullyStylesheetFromCDN.text()).trim();
-      addStyleSheet("external", null, mainText.concat("\n\n").concat(typefullyText));
+      addStyleSheet("external", null, mainText);
     } catch (error) {
       console.error("Can't fetch stylesheets from CDN", error);
     }

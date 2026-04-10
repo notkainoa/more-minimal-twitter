@@ -4,7 +4,6 @@ export const KeyCommunitiesButton = "communitiesButton";
 export const KeyTopicsButton = "topicsButton";
 export const KeyXPremiumButton = "xPremiumButton";
 export const KeyVerifiedOrgsButton = "verifiedOrgsButton";
-export const KeyTypefullyGrowTab = "typefullyGrowTab";
 export const KeyGrokButton = "grokButton";
 export const KeyFollowingTimeline = "followingTimeline";
 export const KeyTrendsHomeTimeline = "trendsHomeTimeline";
@@ -37,7 +36,6 @@ export const KeyTransparentSearch = "transparentSearch";
 export const KeyRemovePromotedPosts = "removePromotedPosts";
 export const KeyRemoveTopicsToFollow = "removeTopicsToFollow";
 export const KeyRecentMedia = "recentMedia";
-export const KeyTypefullyEnhancementsButtons = "typefullyEnhancementsButtons";
 export const KeyInterFont = "interFont";
 export const KeyTitleNotifications = "titleNotifications";
 export const KeyCustomCss = "customCss";
@@ -61,7 +59,6 @@ export const allSettingsKeys = [
   KeyRemovePromotedPosts,
   KeyRemoveTopicsToFollow,
   KeyRemoveTimelineTabs,
-  KeyTypefullyEnhancementsButtons,
   KeyFollowCount,
   KeyReplyCount,
   KeyRetweetCount,
@@ -95,7 +92,6 @@ export const allSettingsKeys = [
   KeyArticlesButton,
   KeyTopicsButton,
   KeyVerifiedOrgsButton,
-  KeyTypefullyGrowTab,
   KeyProfileButton,
 
   // Advanced Features
@@ -122,7 +118,6 @@ export const defaultPreferences = {
   [KeyRemovePromotedPosts]: "on",
   [KeyRemoveTopicsToFollow]: "on",
   [KeyRemoveTimelineTabs]: "off",
-  [KeyTypefullyEnhancementsButtons]: "on",
   [KeyFollowCount]: "on",
   [KeyReplyCount]: "on",
   [KeyRetweetCount]: "on",
@@ -156,7 +151,6 @@ export const defaultPreferences = {
   [KeyArticlesButton]: "off",
   [KeyTopicsButton]: "off",
   [KeyVerifiedOrgsButton]: "off",
-  [KeyTypefullyGrowTab]: "on",
   [KeyProfileButton]: "on",
 
   // Advanced Features

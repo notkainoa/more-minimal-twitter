@@ -1,12 +1,9 @@
 import { KeyWriterMode } from "../../../../storage-keys";
 import selectors from "../../selectors";
 import svgAssets from "../svgAssets";
-import { createTypefullyLinkElement, createTypefullyLogo, getCurrentTextAndSendToTypefully } from "../typefullyPlugs";
 import addStyles, { removeStyles, stylesExist } from "../utilities/addStyles";
 import addTooltip, { hideAllTooltips } from "../utilities/addTooltip";
-import addTypefullyBox from "../utilities/addTypefullyBox";
 import { getStorage, setStorage } from "../utilities/storage";
-import { createTypefullyUrl } from "../utilities/createTypefullyUrl";
 
 const escKeyListener = async (event) => {
   if (event.key === "Escape") {
@@ -15,7 +12,6 @@ const escKeyListener = async (event) => {
   }
 };
 
-let t; // Typefully Plug timeout
 let zt1; // Zen Writer Mode timeout 1
 let zt2; // Zen Writer Mode timeout 2
 export const changeWriterMode = (writerMode) => {
@@ -80,11 +76,6 @@ export const changeWriterMode = (writerMode) => {
             `
         );
 
-        clearTimeout(t);
-        t = setTimeout(() => {
-          addTypefullyPlugToWriterMode();
-        }, 100);
-
         break;
 
       case "off":
@@ -98,68 +89,12 @@ export const changeWriterMode = (writerMode) => {
         }, 500);
 
         removeStyles("writerMode");
-        removeTypefullyPlugFromWriterMode();
         break;
     }
   } else {
     removeStyles("writerMode");
-    removeTypefullyPlugFromWriterMode();
     return;
   }
-};
-
-export const addTypefullyPlugToWriterMode = async () => {
-  if (window.location.pathname.includes("/home") || window.location.pathname === "/") {
-    const main = document.querySelector('main[role="main"]');
-
-    if (!main) return;
-    if (document.getElementById("typefully-writermode-link")) return;
-
-    /* ---------------------------- Typefully Button ---------------------------- */
-
-    const typefullyLinkElement = createTypefullyLinkElement("typefully-writermode-link", "typefully-save-draft-button ghost");
-    typefullyLinkElement.addEventListener("click", () => {
-      getCurrentTextAndSendToTypefully();
-    });
-
-    const typefullyLogo = createTypefullyLogo();
-    const typefullyText = document.createElement("span");
-    typefullyText.innerText = "Save draft to Typefully";
-
-    typefullyLinkElement.appendChild(typefullyLogo);
-    typefullyLinkElement.appendChild(typefullyText);
-
-    /* ----------------- Typefully box callout with explanation ---------------- */
-    const url = createTypefullyUrl({
-      utm_content: "writer-mode-callout",
-    });
-
-    const innerHTML = `<ul>
-  <li>💬 Share your drafts and get comments</li>
-  <li>🤖 Improve your tweets with AI</li>
-  <li>📈 Track your growth with insights and metrics</li>
-  <li>📆 Schedule for later</li>
-</ul>
-<p>Powered by <a href="${url}" target="_blank">Typefully</a>, the makers of the Minimal Twitter extension.</p>`;
-
-    addTypefullyBox(
-      main,
-      innerHTML,
-      {
-        withArrow: true,
-      }
-    );
-
-    main.appendChild(typefullyLinkElement);
-  }
-};
-
-export const removeTypefullyPlugFromWriterMode = () => {
-  const typefullyLinkElement = document.getElementById("typefully-writermode-link");
-  typefullyLinkElement && typefullyLinkElement.remove();
-
-  const typefullyBox = document.getElementById("typefully-callout-box");
-  typefullyBox && typefullyBox.remove();
 };
 
 // Function to add an expand icon to the buttons in the tweet composer

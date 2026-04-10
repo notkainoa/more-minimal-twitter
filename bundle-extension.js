@@ -56,10 +56,8 @@ const MANIFEST_CHROME = {
     {
       resources: [
         "css/main.css",
-        "css/typefully.css",
         "fonts/inter-subset.woff2",
         "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/main.css",
-        "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/typefully.css",
       ],
       matches: [
         "https://twitter.com/*",
@@ -104,10 +102,8 @@ const MANIFEST_FIREFOX = {
   ],
   web_accessible_resources: [
     "css/main.css",
-    "css/typefully.css",
     "fonts/inter-subset.woff2",
     "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/main.css",
-    "https://cdn.jsdelivr.net/gh/typefully/minimal-twitter@5.1/css/typefully.css",
   ],
   browser_action: {
     default_icon: {
