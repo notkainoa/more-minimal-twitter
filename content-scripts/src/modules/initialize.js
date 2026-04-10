@@ -18,17 +18,7 @@ import { getStorage } from "./utilities/storage";
 
 export const addStylesheets = async () => {
   addStyleSheet("main", chrome.runtime.getURL("css/main.css"));
-
-  // Only fetch from CDN in production
-  if (!(await isDevelopmentMode())) {
-    try {
-      const mainStylesheetFromCDN = await fetch("https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/main.css");
-      const mainText = (await mainStylesheetFromCDN.text()).trim();
-      addStyleSheet("external", null, mainText);
-    } catch (error) {
-      console.error("Can't fetch stylesheets from CDN", error);
-    }
-  } else {
+  if (await isDevelopmentMode()) {
     console.log("🚧 Development mode, not adding CDN-cached stylesheets");
   }
 };

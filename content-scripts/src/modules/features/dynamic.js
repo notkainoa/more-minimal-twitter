@@ -4,7 +4,6 @@
  * - Navigation buttons
  * - Timeline customizations
  * - View counts
- * - Typefully integration
  * Applied via MutationObserver on relevant DOM changes
  */
 
