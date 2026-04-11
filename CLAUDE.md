@@ -14,7 +14,9 @@ Repository: https://github.com/typefully/minimal-twitter
 
 Requires [classic yarn](https://classic.yarnpkg.com/lang/en/docs/install/).
 
-- `yarn build` or `yarn bundle` - Builds and bundles the extension for all browsers (prompts for browser choice)
+- `yarn build` or `yarn bundle` - Builds and bundles the extension and prompts for browser choice
+- `yarn build:all|chrome|firefox|safari` - Bundles directly without the prompt (`all` preserves the current Chrome + Firefox behavior)
+- `yarn bundle:all|chrome|firefox|safari` - Same as the `build:*` scripts
 - Builds both popup (Next.js) and content-scripts (Rollup) automatically
 - Creates bundled packages in `/bundle/` directory for Chrome, Firefox, and Safari
 

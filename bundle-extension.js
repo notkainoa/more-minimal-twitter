@@ -16,6 +16,38 @@ const runCommand = (command, yes) =>
     });
   });
 
+const canRenderSpinner =
+  typeof process.stdout.clearLine === "function" &&
+  typeof process.stdout.cursorTo === "function";
+
+const startSpinner = (message) => {
+  if (!canRenderSpinner) {
+    console.log(message);
+    return null;
+  }
+
+  let spinner = "\\";
+  const frames = ["\\", "|", "/", "-"];
+
+  return setInterval(() => {
+    process.stdout.clearLine(0);
+    process.stdout.cursorTo(0);
+    spinner = frames[frames.indexOf(spinner) + 1] || frames[0];
+    process.stdout.write(`${spinner}   ${message}`);
+  }, 250);
+};
+
+const stopSpinner = (intervalId) => {
+  if (intervalId) {
+    clearInterval(intervalId);
+  }
+
+  if (canRenderSpinner) {
+    process.stdout.clearLine(0);
+    process.stdout.cursorTo(0);
+  }
+};
+
 let manifest = {
   name: "Minimal Theme for Twitter / X",
   short_name: "Minimal Twitter",
@@ -123,28 +155,14 @@ const bundle = async (manifest, bundleDirectory) => {
     // Run both build scripts
     const runBuildScript = (directory) => {
       return new Promise(async (resolve, reject) => {
-        let intervalId;
-        let spinner = "\\";
-        const startBuilding = () => {
-          let P = ["\\", "|", "/", "-"];
-          intervalId = setInterval(() => {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            spinner = P[P.indexOf(spinner) + 1] || P[0];
-            process.stdout.write(
-              `${spinner}   Building popup and content scripts...`
-            );
-          }, 250);
-        };
-
-        startBuilding();
+        const intervalId = startSpinner("Building popup and content scripts...");
 
         try {
           await runCommand(`cd ./${directory} && yarn && yarn build`);
-          clearInterval(intervalId);
+          stopSpinner(intervalId);
           resolve();
         } catch (error) {
-          clearInterval(intervalId);
+          stopSpinner(intervalId);
           console.error(
             `Error running build script for ${directory}: ${error}`
           );
@@ -156,8 +174,7 @@ const bundle = async (manifest, bundleDirectory) => {
     await runBuildScript("popup");
     await runBuildScript("content-scripts");
 
-    process.stdout.clearLine();
-    process.stdout.cursorTo(0);
+    stopSpinner(null);
     console.log("🔥  Built popup and content scripts.");
 
     // Bundle popup Next.js export
@@ -216,66 +233,89 @@ const bundleAll = async () => {
   await bundle(MANIFEST_FIREFOX, "bundle/firefox");
 };
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.question(
-  "Which browser would you like to bundle for? [All / Chrome / Firefox / Safari] ",
-  async (browser) => {
-    switch (browser) {
-      case "Chrome":
-        await bundle(MANIFEST_CHROME, "bundle/chrome");
-        break;
-
-      case "Firefox":
-        await bundle(MANIFEST_FIREFOX, "bundle/firefox");
-        break;
-
-      case "Safari":
-        await bundle(MANIFEST_FIREFOX, "bundle/firefox");
-
-        let intervalId;
-        let spinner = "\\";
-        const startBuilding = () => {
-          let P = ["\\", "|", "/", "-"];
-          intervalId = setInterval(() => {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            spinner = P[P.indexOf(spinner) + 1] || P[0];
-            process.stdout.write(`${spinner}   Bundling Safari...`);
-          }, 250);
-        };
-
-        startBuilding();
-
-        await runCommand(generateSafariProjectCommand, true);
-        await runCommand(fixBundleIdentifierCommand, true);
-
-        clearInterval(intervalId);
-        break;
-
-      case "All":
-        await bundleAll();
-        break;
-
-      default:
-        await bundleAll();
-    }
-
-    rl.close();
-  }
-);
-
-rl.on("close", () => {
-  process.exit(0);
-});
-
 const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'Minimal Twitter' --bundle-identifier 'com.typefully.minimal-twitter'`;
 
 // The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
 const fixBundleIdentifierCommand = `find "bundle/safari/Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+
+const bundleSafari = async () => {
+  await bundle(MANIFEST_FIREFOX, "bundle/firefox");
+
+  const intervalId = startSpinner("Bundling Safari...");
+
+  await runCommand(generateSafariProjectCommand, true);
+  await runCommand(fixBundleIdentifierCommand, true);
+
+  stopSpinner(intervalId);
+};
+
+const normalizeBundleTarget = (value) => value?.trim().toLowerCase();
+
+const runBundleTarget = async (target) => {
+  switch (normalizeBundleTarget(target)) {
+    case "chrome":
+      await bundle(MANIFEST_CHROME, "bundle/chrome");
+      return true;
+
+    case "firefox":
+      await bundle(MANIFEST_FIREFOX, "bundle/firefox");
+      return true;
+
+    case "safari":
+      await bundleSafari();
+      return true;
+
+    case "all":
+      await bundleAll();
+      return true;
+
+    default:
+      return false;
+  }
+};
+
+const promptForBundleTarget = () => {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(
+      "Which browser would you like to bundle for? [All / Chrome / Firefox / Safari] ",
+      (browser) => {
+        rl.close();
+        resolve(browser);
+      }
+    );
+  });
+};
+
+const main = async () => {
+  const cliTarget = process.argv[2];
+
+  if (cliTarget) {
+    const handled = await runBundleTarget(cliTarget);
+
+    if (!handled) {
+      console.error(
+        `Unknown bundle target \`${cliTarget}\`. Use one of: all, chrome, firefox, safari.`
+      );
+      process.exit(1);
+    }
+
+    process.exit(0);
+  }
+
+  const promptTarget = await promptForBundleTarget();
+  const handled = await runBundleTarget(promptTarget);
+
+  if (!handled) {
+    await bundleAll();
+  }
+};
+
+await main();
 
 /*--- Bundle without prompting
 await bundleAll();
