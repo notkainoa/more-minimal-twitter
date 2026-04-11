@@ -4,7 +4,15 @@
   "packageManager": "yarn@1.22.22",
   "scripts": {
     "build": "node ./bundle-extension.js",
+    "build:all": "node ./bundle-extension.js all",
+    "build:chrome": "node ./bundle-extension.js chrome",
+    "build:firefox": "node ./bundle-extension.js firefox",
+    "build:safari": "node ./bundle-extension.js safari",
     "bundle": "node ./bundle-extension.js",
+    "bundle:all": "node ./bundle-extension.js all",
+    "bundle:chrome": "node ./bundle-extension.js chrome",
+    "bundle:firefox": "node ./bundle-extension.js firefox",
+    "bundle:safari": "node ./bundle-extension.js safari",
     "bump-version": "node ./bump-version.js"
   },
   "dependencies": {
