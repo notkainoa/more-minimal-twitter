@@ -216,3 +216,27 @@ export const hideGrokDrawer = (state) => {
       break;
   }
 };
+
+export const hideMessagesDrawer = (state) => {
+  switch (state) {
+    case "on":
+      removeStyles("messagesDrawerVisibility");
+      addStyles(
+        "messagesDrawer",
+        `${selectors.messagesDrawer},
+        ${selectors.messagesDrawerLegacy} {
+          display: none !important;
+        }`
+      );
+      break;
+    case "off":
+      removeStyles("messagesDrawer");
+      addStyles(
+        "messagesDrawerVisibility",
+        `${selectors.messagesDrawerLegacy} {
+          visibility: visible !important;
+        }`
+      );
+      break;
+  }
+};
