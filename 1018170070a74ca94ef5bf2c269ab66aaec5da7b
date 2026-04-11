@@ -1,0 +1,45 @@
+bundle-extension.js
+  f18c36490dd9f29f 3,219,221-224,226-228,230-232,234-237,239-240,242-243,245-255,257,259-290,292,294-295,297-304,307-308,311-312,314-315,317-320
+CLAUDE.md
+  f18c36490dd9f29f 17-19,38,159,161,163-165,172
+.gitignore
+  f18c36490dd9f29f 42
+bump-version.js
+  f18c36490dd9f29f 7,55,57-58,60-61,64-65,67-74,114-115
+safari-version.json
+  f18c36490dd9f29f 2
+content-scripts/src/modules/options/navigation.js
+  f18c36490dd9f29f 34
+popup/components/sections/NavigationSection.js
+  f18c36490dd9f29f 8,55-62,112-116,221-222
+content-scripts/src/selectors.js
+  f18c36490dd9f29f 18
+content-scripts/src/modules/features/static.js
+  f18c36490dd9f29f 12,60,131
+package.json
+  f18c36490dd9f29f 7-10,12-15
+.github/CONTRIBUTING.md
+  f18c36490dd9f29f 9,56-60
+storage-keys.js
+  f18c36490dd9f29f 21,88,148
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "1018170070a74ca94ef5bf2c269ab66aaec5da7b",
+  "prompts": {
+    "f18c36490dd9f29f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7df7-f84d-7070-b26e-ea943ea90ff4",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 725,
+      "total_deletions": 1442,
+      "accepted_lines": 725,
+      "overriden_lines": 0
+    }
+  }
+}
