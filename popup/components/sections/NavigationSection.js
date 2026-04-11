@@ -50,7 +50,14 @@ const IconButton = ({ storageKey, label, children }) => {
           {children}
         </svg>
       </StyledToggle>
-      <span className={"text-xs text-center tracking-tight" + (pressed ? " text-gray-800 font-semibold" : " text-gray-500")}>{label}</span>
+      <span
+        className={
+          "text-xs text-center tracking-tight" +
+          (pressed ? " font-semibold dark:text-white text-black" : " dark:text-gray-400 text-gray-500")
+        }
+      >
+        {label}
+      </span>
     </div>
   );
 };
