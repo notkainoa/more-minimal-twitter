@@ -217,10 +217,10 @@ const NavigationSection = () => {
             <Notifications />
             <Messages />
             <Grok />
+            <Bookmarks />
             <CreatorStudio />
             <XPremium />
             <Lists />
-            <Bookmarks />
             <Jobs />
             <Communities />
             <Articles />
