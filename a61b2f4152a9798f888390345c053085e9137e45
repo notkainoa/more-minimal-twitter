@@ -1,0 +1,34 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "a61b2f4152a9798f888390345c053085e9137e45",
+  "prompts": {
+    "96c6b561e556a804": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7a78-2e9d-71d3-90e8-540ff78694f4",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 85,
+      "overriden_lines": 0
+    },
+    "ed6d23bdc06c2997": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7a6a-776b-7e33-b258-4814f14da13d",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 321,
+      "overriden_lines": 0
+    }
+  }
+}
