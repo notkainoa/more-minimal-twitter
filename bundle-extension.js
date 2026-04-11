@@ -216,66 +216,89 @@ const bundleAll = async () => {
   await bundle(MANIFEST_FIREFOX, "bundle/firefox");
 };
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.question(
-  "Which browser would you like to bundle for? [All / Chrome / Firefox / Safari] ",
-  async (browser) => {
-    switch (browser) {
-      case "Chrome":
-        await bundle(MANIFEST_CHROME, "bundle/chrome");
-        break;
-
-      case "Firefox":
-        await bundle(MANIFEST_FIREFOX, "bundle/firefox");
-        break;
-
-      case "Safari":
-        await bundle(MANIFEST_FIREFOX, "bundle/firefox");
-
-        let intervalId;
-        let spinner = "\\";
-        const startBuilding = () => {
-          let P = ["\\", "|", "/", "-"];
-          intervalId = setInterval(() => {
-            process.stdout.clearLine();
-            process.stdout.cursorTo(0);
-            spinner = P[P.indexOf(spinner) + 1] || P[0];
-            process.stdout.write(`${spinner}   Bundling Safari...`);
-          }, 250);
-        };
-
-        startBuilding();
-
-        await runCommand(generateSafariProjectCommand, true);
-        await runCommand(fixBundleIdentifierCommand, true);
-
-        clearInterval(intervalId);
-        break;
-
-      case "All":
-        await bundleAll();
-        break;
-
-      default:
-        await bundleAll();
-    }
-
-    rl.close();
-  }
-);
-
-rl.on("close", () => {
-  process.exit(0);
-});
-
 const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'Minimal Twitter' --bundle-identifier 'com.typefully.minimal-twitter'`;
 
 // The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
 const fixBundleIdentifierCommand = `find "bundle/safari/Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+
+const bundleSafari = async () => {
+  await bundle(MANIFEST_FIREFOX, "bundle/firefox");
+
+  let intervalId;
+  let spinner = "\\";
+  const startBuilding = () => {
+    let P = ["\\", "|", "/", "-"];
+    intervalId = setInterval(() => {
+      process.stdout.clearLine();
+      process.stdout.cursorTo(0);
+      spinner = P[P.indexOf(spinner) + 1] || P[0];
+      process.stdout.write(`${spinner}   Bundling Safari...`);
+    }, 250);
+  };
+
+  startBuilding();
+
+  try {
+    await runCommand(generateSafariProjectCommand, true);
+    await runCommand(fixBundleIdentifierCommand, true);
+  } finally {
+    clearInterval(intervalId);
+  }
+};
+
+const bundleActions = {
+  all: bundleAll,
+  chrome: async () => bundle(MANIFEST_CHROME, "bundle/chrome"),
+  firefox: async () => bundle(MANIFEST_FIREFOX, "bundle/firefox"),
+  safari: bundleSafari,
+};
+
+const promptForBrowser = async () => {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(
+      "Which browser would you like to bundle for? [All / Chrome / Firefox / Safari] ",
+      (browser) => {
+        rl.close();
+        resolve(browser);
+      }
+    );
+  });
+};
+
+const normalizeBrowserTarget = (browser) => browser?.trim().toLowerCase();
+
+const run = async () => {
+  const browserArg = normalizeBrowserTarget(process.argv[2]);
+
+  if (browserArg) {
+    const bundleAction = bundleActions[browserArg];
+
+    if (!bundleAction) {
+      console.error(
+        `Unknown bundle target \`${process.argv[2]}\`. Use one of: all, chrome, firefox, safari.`
+      );
+      process.exit(1);
+    }
+
+    await bundleAction();
+    return;
+  }
+
+  const browser = normalizeBrowserTarget(await promptForBrowser());
+  const bundleAction = bundleActions[browser] || bundleActions.all;
+
+  await bundleAction();
+};
+
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
 
 /*--- Bundle without prompting
 await bundleAll();
