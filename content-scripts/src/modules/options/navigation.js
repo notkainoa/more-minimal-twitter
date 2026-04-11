@@ -220,7 +220,6 @@ export const hideGrokDrawer = (state) => {
 export const hideMessagesDrawer = (state) => {
   switch (state) {
     case "on":
-      removeStyles("messagesDrawerVisibility");
       addStyles(
         "messagesDrawer",
         `${selectors.messagesDrawer},
@@ -231,12 +230,7 @@ export const hideMessagesDrawer = (state) => {
       break;
     case "off":
       removeStyles("messagesDrawer");
-      addStyles(
-        "messagesDrawerVisibility",
-        `${selectors.messagesDrawerLegacy} {
-          visibility: visible !important;
-        }`
-      );
+      removeStyles("messagesDrawerVisibility");
       break;
   }
 };
