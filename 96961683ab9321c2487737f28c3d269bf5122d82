@@ -1,0 +1,23 @@
+content-scripts/src/modules/options/navigation.js
+  f18c36490dd9f29f 233
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "96961683ab9321c2487737f28c3d269bf5122d82",
+  "prompts": {
+    "f18c36490dd9f29f": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7df7-f84d-7070-b26e-ea943ea90ff4",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 7,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
