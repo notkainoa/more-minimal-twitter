@@ -16,6 +16,7 @@ import {
   KeyFollowingTimeline,
   KeyGrokButton,
   KeyHideGrokDrawer,
+  KeyHideMessagesDrawer,
   KeyHideViewCount,
   KeyHomeButton,
   KeyInterFont,
@@ -73,6 +74,7 @@ import {
   changeVerifiedOrgsButton,
   changeXPremiumButton,
   hideGrokDrawer,
+  hideMessagesDrawer,
 } from "../options/navigation";
 import {
   changeFollowingTimeline,
@@ -111,6 +113,7 @@ export const staticFeatures = {
     changeNavigationCenter(data[KeyNavigationCenter]);
     changeUnreadCountBadge(data[KeyUnreadCountBadge]);
     hideGrokDrawer(data[KeyHideGrokDrawer]);
+    hideMessagesDrawer(data[KeyHideMessagesDrawer]);
   },
   interface: (data) => {
     changeInterFont(data[KeyInterFont]);

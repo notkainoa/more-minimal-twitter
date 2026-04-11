@@ -41,6 +41,7 @@ export const KeyTitleNotifications = "titleNotifications";
 export const KeyCustomCss = "customCss";
 export const KeyHideViewCount = "hideViewCount";
 export const KeyHideGrokDrawer = "hideGrokDrawer";
+export const KeyHideMessagesDrawer = "hideMessagesDrawer";
 
 export const allSettingsKeys = [
   // Extension Status
@@ -69,6 +70,7 @@ export const allSettingsKeys = [
   KeyNavigationCenter,
   KeyUnreadCountBadge,
   KeyHideGrokDrawer,
+  KeyHideMessagesDrawer,
 
   // Interface Features
   KeyInterFont,
@@ -128,6 +130,7 @@ export const defaultPreferences = {
   [KeyNavigationCenter]: "off",
   [KeyUnreadCountBadge]: "off",
   [KeyHideGrokDrawer]: "on",
+  [KeyHideMessagesDrawer]: "on",
 
   // Interface Features
   [KeyInterFont]: "off",

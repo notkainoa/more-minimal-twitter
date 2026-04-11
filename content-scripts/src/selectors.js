@@ -36,6 +36,7 @@ selectors.rightSidebar = `[data-testid="sidebarColumn"]`;
 // Add Grok drawer selector
 selectors.grokDrawer = `[data-testid="GrokDrawer"]`;
 selectors.grokDrawerHeader = `div[data-testid="GrokDrawerHeader"]`;
+selectors.messagesDrawer = `[data-testid="DMDrawer"], [data-testid="chat-drawer-root"]`;
 // Timeline
 selectors.timelineTablist = `div[data-testid='ScrollSnap-List'][role='tablist']`;
 selectors.timelineTab = `div[role='tab']`;

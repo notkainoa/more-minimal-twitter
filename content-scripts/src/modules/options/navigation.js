@@ -217,3 +217,19 @@ export const hideGrokDrawer = (state) => {
       break;
   }
 };
+
+export const hideMessagesDrawer = (state) => {
+  switch (state) {
+    case "on":
+      addStyles(
+        "messagesDrawer",
+        `${selectors.messagesDrawer} {
+          display: none !important;
+        }`
+      );
+      break;
+    case "off":
+      removeStyles("messagesDrawer");
+      break;
+  }
+};

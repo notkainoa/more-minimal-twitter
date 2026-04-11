@@ -10,6 +10,7 @@ import {
   KeyCommunitiesButton,
   KeyFollowingTimeline,
   KeyHideGrokDrawer,
+  KeyHideMessagesDrawer,
   KeyHideViewCount,
   KeyListsButton,
   KeyRemoveTimelineTabs,
@@ -19,7 +20,7 @@ import {
   KeyNavigationButtonsLabels
 } from "../../../../storage-keys";
 import changeHideViewCounts from "../options/hideViewCount";
-import { addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
+import { addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, hideMessagesDrawer, changeNavigationButtonsLabels } from "../options/navigation";
 import { changeFollowingTimeline, changeRecentMedia, changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
 import hideRightSidebar from "../utilities/hideRightSidebar";
 import { updateLeftSidebarPositioning } from "../utilities/leftSidebarPosition";
@@ -64,6 +65,7 @@ export const runDynamicFeatures = throttle(async () => {
     KeyTrendsHomeTimeline,
     KeyRemoveTimelineTabs,
     KeyHideGrokDrawer,
+    KeyHideMessagesDrawer,
     KeyNavigationButtonsLabels
   ]);
 
@@ -76,5 +78,6 @@ export const runDynamicFeatures = throttle(async () => {
     // The Grok drawer appears dynamically, so we need to handle it here as well
     // as in the static features module
     hideGrokDrawer(data?.[KeyHideGrokDrawer]);
+    hideMessagesDrawer(data?.[KeyHideMessagesDrawer]);
   }
 }, 50);
