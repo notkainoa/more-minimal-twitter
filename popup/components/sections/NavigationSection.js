@@ -5,6 +5,7 @@ import {
   KeyArticlesButton,
   KeyBookmarksButton,
   KeyCommunitiesButton,
+  KeyCreatorStudioButton,
   KeyExploreButton,
   KeyGrokButton,
   KeyHideGrokDrawer,
@@ -103,6 +104,15 @@ const Bookmarks = () => (
     <path
       className="fill-current"
       d="M4 4.5A2.5 2.5 0 016.5 2h11A2.5 2.5 0 0120 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
+    />
+  </IconButton>
+);
+
+const CreatorStudio = () => (
+  <IconButton storageKey={KeyCreatorStudioButton} label="Creator Studio">
+    <path
+      className="fill-current"
+      d="M5 22H2v-3c0-1.654 1.346-3 3-3s3 1.346 3 3-1.346 3-3 3zm-1-2h1c.551 0 1-.449 1-1s-.449-1-1-1-1 .449-1 1v1zm7.594 1.282l-.336-1.145c-.271-.923-.664-1.807-1.166-2.627-.452-.736-.992-1.421-1.607-2.036-.626-.625-1.322-1.173-2.069-1.627-.821-.499-1.706-.888-2.63-1.157l-1.151-.335L5.312 7h5.192c.613-.636 2.015-2.077 2.758-2.744C15.673 2.09 20.704 2.003 20.918 2l1.025-.013-.013 1.025c-.003.213-.09 5.245-2.256 7.656-.643.715-2.004 2.043-2.671 2.688v5.239l-5.407 2.688h-.002zm.64-4.046c.207.396.393.802.557 1.217l2.21-1.099v-2.333l-2.768 2.214zm-3.839-4.468c.531.391 1.034.823 1.503 1.292.459.459.883.951 1.267 1.471l4.104-3.284c.269-.257 2.169-2.084 2.916-2.915 1.084-1.208 1.531-3.667 1.681-5.269-1.602.149-4.061.596-5.268 1.68-.832.748-2.658 2.647-2.916 2.916l-3.287 4.109zM5.47 11.154c.414.163.819.347 1.214.551l2.165-2.706H6.548l-1.077 2.154z"
     />
   </IconButton>
 );
@@ -207,9 +217,10 @@ const NavigationSection = () => {
             <Notifications />
             <Messages />
             <Grok />
+            <Bookmarks />
+            <CreatorStudio />
             <XPremium />
             <Lists />
-            <Bookmarks />
             <Jobs />
             <Communities />
             <Articles />

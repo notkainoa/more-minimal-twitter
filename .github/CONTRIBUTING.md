@@ -6,7 +6,7 @@ If you have a good idea, [start a discussion](https://github.com/typefully/minim
 
 First, you must have [classic yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) installed.
 
-✨ **New**: `bundle-extension.js` now bundles and zips everything. Run `yarn && yarn bundle` at the root directory and you'll get a [bundle](../bundle) directory that looks like this:
+✨ **New**: `bundle-extension.js` now bundles and zips everything. Run `yarn && yarn bundle` at the root directory for the interactive browser picker, or use `yarn bundle:chrome`, `yarn bundle:firefox`, `yarn bundle:safari`, or `yarn bundle:all` to skip the prompt. You'll get a [bundle](../bundle) directory that looks like this:
 
 ```
 📂 bundle
@@ -53,7 +53,11 @@ cd .. # go back to the root directory
 
 ```sh
 yarn # must run yarn once first before you can bundle
-yarn bundle # Runs the `bundle-extension.js` script
+yarn bundle # interactive browser picker
+yarn bundle:chrome
+yarn bundle:firefox
+yarn bundle:safari
+yarn bundle:all
 ```
 
 ## Load Extension

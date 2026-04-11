@@ -14,7 +14,9 @@ Repository: https://github.com/typefully/minimal-twitter
 
 Requires [classic yarn](https://classic.yarnpkg.com/lang/en/docs/install/).
 
-- `yarn build` or `yarn bundle` - Builds and bundles the extension for all browsers (prompts for browser choice)
+- `yarn build` or `yarn bundle` - Builds and bundles the extension, prompting for `All`, `Chrome`, `Firefox`, or `Safari`
+- `yarn build:all|chrome|firefox|safari` - Builds a specific browser target without prompting
+- `yarn bundle:all|chrome|firefox|safari` - Same as the matching `build:*` script
 - Builds both popup (Next.js) and content-scripts (Rollup) automatically
 - Creates bundled packages in `/bundle/` directory for Chrome, Firefox, and Safari
 
@@ -33,7 +35,7 @@ Requires [classic yarn](https://classic.yarnpkg.com/lang/en/docs/install/).
 
 ### Development Workflow
 
-1. Run `yarn build` at root once to build everything initially
+1. Run `yarn build` at root once to choose a browser target interactively, or use `yarn build:chrome` / `yarn build:firefox` / `yarn build:safari` / `yarn build:all`
 2. For content-script changes: `cd content-scripts && yarn watch` (auto-rebuilds on save)
 3. For popup changes: `cd popup && yarn build` (no watch mode, must rebuild manually)
 
@@ -154,18 +156,20 @@ To add a new feature toggle:
 
 1. Run `yarn bump-version` (prompts for patch/minor/major). This automatically updates:
    - `bundle-extension.js` - main version number
-   - Xcode project (`project.pbxproj`) - MARKETING_VERSION and CURRENT_PROJECT_VERSION (build number incremented by 1)
+   - `safari-version.json` - Safari build number metadata (incremented by 1)
 
-2. Run `yarn build` to create bundles for all browsers
+2. Run `yarn build:safari` when you need a Safari project. The generated Xcode project will be stamped with the version from `bundle-extension.js` and the build number from `safari-version.json`.
 
-3. Commit and tag:
+3. Run `yarn build:chrome` / `yarn build:firefox` / other bundle commands as needed to create distributables
+
+4. Commit and tag:
    ```bash
    git add . && git commit -m "Bump version to X.Y.Z"
    git tag vX.Y.Z
    git push && git push --tags
    ```
 
-4. Submit bundles to browser stores (Chrome Web Store, Firefox Add-ons, App Store via Xcode)
+5. Submit bundles to browser stores (Chrome Web Store, Firefox Add-ons, App Store via Xcode)
 
 ### Update Screen Behavior
 
