@@ -9,17 +9,20 @@
 
 import {
   KeyCommunitiesButton,
+  KeyFollowingTimeline,
   KeyHideGrokDrawer,
   KeyHideViewCount,
   KeyListsButton,
+  KeyRemoveTimelineTabs,
   KeyTopicsButton,
+  KeyTrendsHomeTimeline,
   KeyTypefullyGrowTab,
   KeyXPremiumButton,
   KeyNavigationButtonsLabels
 } from "../../../../storage-keys";
 import changeHideViewCounts from "../options/hideViewCount";
 import { addAnalyticsButton, addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
-import { changeRecentMedia, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
+import { changeFollowingTimeline, changeRecentMedia, changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
 import { addTypefullyComposerPlug, addTypefullyReplyPlug, saveCurrentReplyToLink, addTypefullySecurityAndAccountAccessPlug, addTypefullySchedulePlug } from "../typefullyPlugs";
 import hideRightSidebar from "../utilities/hideRightSidebar";
 import { updateLeftSidebarPositioning } from "../utilities/leftSidebarPosition";
@@ -48,6 +51,11 @@ export const dynamicFeatures = {
   navigation: (data) => {
     changeNavigationButtonsLabels(data[KeyNavigationButtonsLabels]);
   },
+  timeline: (data) => {
+    changeTimelineTabs(data[KeyRemoveTimelineTabs]);
+    changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
+    changeFollowingTimeline(data[KeyFollowingTimeline]);
+  },
   sidebarButtons: async () => {
     const data = await getStorage([KeyListsButton, KeyCommunitiesButton, KeyTopicsButton, KeyXPremiumButton, KeyTypefullyGrowTab]);
 
@@ -62,12 +70,19 @@ export const dynamicFeatures = {
 };
 
 export const runDynamicFeatures = throttle(async () => {
-  const data = await getStorage([KeyHideGrokDrawer, KeyNavigationButtonsLabels]);
+  const data = await getStorage([
+    KeyFollowingTimeline,
+    KeyTrendsHomeTimeline,
+    KeyRemoveTimelineTabs,
+    KeyHideGrokDrawer,
+    KeyNavigationButtonsLabels
+  ]);
 
   if (data) {
     dynamicFeatures.general();
     dynamicFeatures.typefullyPlugs();
     await dynamicFeatures.sidebarButtons();
+    dynamicFeatures.timeline(data);
     dynamicFeatures.navigation(data);
 
     // The Grok drawer appears dynamically, so we need to handle it here as well
