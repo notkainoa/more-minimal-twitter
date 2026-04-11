@@ -1,0 +1,54 @@
+content-scripts/src/modules/features/dynamic.js
+  96c6b561e556a804 44-48,62-68,73
+popup/next.config.js
+  96c6b561e556a804 1-7
+popup/.eslintrc.json
+  ed6d23bdc06c2997 2
+content-scripts/src/modules/options/timeline.js
+  96c6b561e556a804 185-186,266-267
+content-scripts/package.json
+  96c6b561e556a804 3
+package.json
+  96c6b561e556a804 4
+popup/components/sections/NavigationSection.js
+  96c6b561e556a804 115,117
+content-scripts/src/modules/features/static.js
+  96c6b561e556a804 97,100
+popup/components/sections/AdvancedSection.js
+  96c6b561e556a804 4,13-23,25-31
+popup/package.json
+  96c6b561e556a804 4,10-11,36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "18985922e3c0e5c3ef409f033346d2c9063386bf",
+  "prompts": {
+    "96c6b561e556a804": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7a78-2e9d-71d3-90e8-540ff78694f4",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 404,
+      "total_deletions": 266,
+      "accepted_lines": 138,
+      "overriden_lines": 0
+    },
+    "ed6d23bdc06c2997": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7a6a-776b-7e33-b258-4814f14da13d",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 322,
+      "overriden_lines": 0
+    }
+  }
+}
