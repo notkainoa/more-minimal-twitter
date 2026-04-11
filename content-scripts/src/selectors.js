@@ -16,6 +16,7 @@ selectors.sidebarLinks = {
   messages: `${selectors.leftSidebar} [data-testid="AppTabBar_DirectMessage_Link"]`,
   bookmarks: `${selectors.leftSidebar} a[href*="bookmarks"]`,
   jobs: `${selectors.leftSidebar} a[href*="jobs"]`,
+  creatorStudio: `${selectors.leftSidebar} a[href*="/i/jf/creators/studio"]`,
   articles: 'a[href="/compose/articles"]',
   topics: `${selectors.leftSidebar} a[href*=topics]`,
   circles: `${selectors.leftSidebar} a[href*=circles]`,

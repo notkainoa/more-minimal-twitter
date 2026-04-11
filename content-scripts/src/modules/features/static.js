@@ -9,6 +9,7 @@ import {
   KeyArticlesButton,
   KeyBookmarksButton,
   KeyCommunitiesButton,
+  KeyCreatorStudioButton,
   KeyCustomCss,
   KeyExploreButton,
   KeyFollowCount,
@@ -55,6 +56,7 @@ import {
   changeArticlesButton,
   changeBookmarksButton,
   changeCommunitiesButton,
+  changeCreatorStudioButton,
   changeExploreButton,
   changeGrokButton,
   changeHomeButton,
@@ -124,6 +126,7 @@ export const staticFeatures = {
     changeMessagesButton(data[KeyMessagesButton]);
     changeBookmarksButton(data[KeyBookmarksButton]);
     changeJobsButton(data[KeyJobsButton]);
+    changeCreatorStudioButton(data[KeyCreatorStudioButton]);
     changeArticlesButton(data[KeyArticlesButton]);
     changeCommunitiesButton(data[KeyCommunitiesButton]);
     changeTopicsButton(data[KeyTopicsButton]);
