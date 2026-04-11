@@ -1,6 +1,5 @@
 /**
  * Dynamic features that respond to Twitter's DOM updates:
- * - Writer mode
  * - Navigation buttons
  * - Timeline customizations
  * - View counts
@@ -16,14 +15,12 @@ import {
   KeyRemoveTimelineTabs,
   KeyTopicsButton,
   KeyTrendsHomeTimeline,
-  KeyWriterMode,
   KeyXPremiumButton,
   KeyNavigationButtonsLabels
 } from "../../../../storage-keys";
 import changeHideViewCounts from "../options/hideViewCount";
 import { addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
 import { changeFollowingTimeline, changeRecentMedia, changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
-import { changeWriterMode } from "../options/writerMode";
 import hideRightSidebar from "../utilities/hideRightSidebar";
 import { updateLeftSidebarPositioning } from "../utilities/leftSidebarPosition";
 import { addSmallerSearchBarStyle } from "../utilities/other-styles";
@@ -44,6 +41,11 @@ export const dynamicFeatures = {
   navigation: (data) => {
     changeNavigationButtonsLabels(data[KeyNavigationButtonsLabels]);
   },
+  timeline: (data) => {
+    changeTimelineTabs(data[KeyRemoveTimelineTabs]);
+    changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
+    changeFollowingTimeline(data[KeyFollowingTimeline]);
+  },
   sidebarButtons: async () => {
     const data = await getStorage([KeyListsButton, KeyCommunitiesButton, KeyTopicsButton, KeyXPremiumButton]);
 
@@ -54,24 +56,21 @@ export const dynamicFeatures = {
     if (data[KeyTopicsButton] === "on") addTopicsButton();
     if (data[KeyXPremiumButton] === "on") addXPremiumButton();
   },
-  writerMode: async (data) => {
-    if (data[KeyWriterMode] === "on") {
-      changeWriterMode(data[KeyWriterMode]);
-    } else {
-      changeTimelineTabs(data[KeyRemoveTimelineTabs], data[KeyWriterMode]);
-      changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline], data[KeyWriterMode]);
-      changeFollowingTimeline(data[KeyFollowingTimeline]);
-    }
-  },
 };
 
 export const runDynamicFeatures = throttle(async () => {
-  const data = await getStorage([KeyWriterMode, KeyFollowingTimeline, KeyTrendsHomeTimeline, KeyRemoveTimelineTabs, KeyHideGrokDrawer, KeyNavigationButtonsLabels]);
+  const data = await getStorage([
+    KeyFollowingTimeline,
+    KeyTrendsHomeTimeline,
+    KeyRemoveTimelineTabs,
+    KeyHideGrokDrawer,
+    KeyNavigationButtonsLabels
+  ]);
 
   if (data) {
     dynamicFeatures.general();
     await dynamicFeatures.sidebarButtons();
-    await dynamicFeatures.writerMode(data);
+    dynamicFeatures.timeline(data);
     dynamicFeatures.navigation(data);
 
     // The Grok drawer appears dynamically, so we need to handle it here as well

@@ -45,7 +45,6 @@ import {
   KeyTweetButton,
   KeyUnreadCountBadge,
   KeyVerifiedOrgsButton,
-  KeyWriterMode,
   KeyXPremiumButton,
 } from "../../../../storage-keys";
 import { changeCustomCss } from "../options/customCss";
@@ -85,7 +84,6 @@ import {
   changeTrendsHomeTimeline,
   changeTweetBorders,
 } from "../options/timeline";
-import { changeWriterMode } from "../options/writerMode";
 
 export const staticFeatures = {
   timeline: (data) => {
@@ -93,14 +91,13 @@ export const staticFeatures = {
     changeTimelineBorders(data[KeyRemoveTimelineBorders]);
     changeTweetBorders(data[KeyRemoveTweetBorders]);
     changeStickyHeader(data[KeyStickyHeader]);
-    changeWriterMode(data[KeyWriterMode]);
     changeFollowingTimeline(data[KeyFollowingTimeline]);
     changeHideViewCounts(data[KeyHideViewCount]);
     changeRecentMedia(data[KeyRecentMedia]);
-    changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline], data[KeyWriterMode]);
+    changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
     changePromotedPosts(data[KeyRemovePromotedPosts]);
     changeTopicsToFollow(data[KeyRemoveTopicsToFollow]);
-    changeTimelineTabs(data[KeyRemoveTimelineTabs], data[KeyWriterMode]);
+    changeTimelineTabs(data[KeyRemoveTimelineTabs]);
     changeFollowingAndFollowersCounts(data[KeyFollowCount]);
     changeReplyCount(data[KeyReplyCount]);
     changeRetweetCount(data[KeyRetweetCount]);
