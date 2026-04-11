@@ -9,6 +9,7 @@ import {
   KeyExploreButton,
   KeyGrokButton,
   KeyHideGrokDrawer,
+  KeyHideMessagesDrawer,
   KeyHomeButton,
   KeyJobsButton,
   KeyListsButton,
@@ -254,6 +255,7 @@ const NavigationSection = () => {
             <SwitchControl label="Center Vertically" storageKey={KeyNavigationCenter} />
             <SwitchControl label="Unread Count Badge" storageKey={KeyUnreadCountBadge} />
             <SwitchControl label="Hide Grok Drawer Button" storageKey={KeyHideGrokDrawer} />
+            <SwitchControl label="Hide DMs Drawer Button" storageKey={KeyHideMessagesDrawer} />
           </div>
         </form>
       </div>
