@@ -43,8 +43,6 @@ import {
   KeyTransparentSearch,
   KeyTrendsHomeTimeline,
   KeyTweetButton,
-  KeyTypefullyEnhancementsButtons,
-  KeyTypefullyGrowTab,
   KeyUnreadCountBadge,
   KeyVerifiedOrgsButton,
   KeyXPremiumButton,
@@ -54,7 +52,6 @@ import { changeFollowingAndFollowersCounts, changeLikeCount, changeReplyCount, c
 import changeHideViewCounts from "../options/hideViewCount";
 import { changeHideSearchBar, changeInterFont, changeTitleNotifications, changeTransparentSearchBar, changeTweetButton } from "../options/interface";
 import {
-  changeAnalyticsButton,
   changeArticlesButton,
   changeBookmarksButton,
   changeCommunitiesButton,
@@ -87,7 +84,6 @@ import {
   changeTrendsHomeTimeline,
   changeTweetBorders,
 } from "../options/timeline";
-import { changeTypefullyEnhancementsButtons } from "../options/typefully";
 
 export const staticFeatures = {
   timeline: (data) => {
@@ -102,7 +98,6 @@ export const staticFeatures = {
     changePromotedPosts(data[KeyRemovePromotedPosts]);
     changeTopicsToFollow(data[KeyRemoveTopicsToFollow]);
     changeTimelineTabs(data[KeyRemoveTimelineTabs]);
-    changeTypefullyEnhancementsButtons(data[KeyTypefullyEnhancementsButtons]);
     changeFollowingAndFollowersCounts(data[KeyFollowCount]);
     changeReplyCount(data[KeyReplyCount]);
     changeRetweetCount(data[KeyRetweetCount]);
@@ -137,7 +132,6 @@ export const staticFeatures = {
     changeXPremiumButton(data[KeyXPremiumButton]);
     changeGrokButton(data[KeyGrokButton]);
     changeVerifiedOrgsButton(data[KeyVerifiedOrgsButton]);
-    changeAnalyticsButton(data[KeyTypefullyGrowTab]);
   },
   advanced: (data) => {
     changeCustomCss(data[KeyCustomCss]);

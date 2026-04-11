@@ -9,7 +9,6 @@ export default function isMutationSkippable(mutationsList) {
     if (
       el?.id?.startsWith("mt-") ||
       t?.id?.startsWith("mt-") ||
-      el?.id?.startsWith("typefully-") ||
       t?.className?.startsWith("mt-") // For example .mt-tooltip ends up here
     )
       return true;

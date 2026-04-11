@@ -3,7 +3,6 @@
  * - Navigation buttons
  * - Timeline customizations
  * - View counts
- * - Typefully integration
  * Applied via MutationObserver on relevant DOM changes
  */
 
@@ -16,14 +15,12 @@ import {
   KeyRemoveTimelineTabs,
   KeyTopicsButton,
   KeyTrendsHomeTimeline,
-  KeyTypefullyGrowTab,
   KeyXPremiumButton,
   KeyNavigationButtonsLabels
 } from "../../../../storage-keys";
 import changeHideViewCounts from "../options/hideViewCount";
-import { addAnalyticsButton, addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
+import { addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, changeNavigationButtonsLabels } from "../options/navigation";
 import { changeFollowingTimeline, changeRecentMedia, changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
-import { addTypefullyComposerPlug, addTypefullyReplyPlug, saveCurrentReplyToLink, addTypefullySecurityAndAccountAccessPlug, addTypefullySchedulePlug } from "../typefullyPlugs";
 import hideRightSidebar from "../utilities/hideRightSidebar";
 import { updateLeftSidebarPositioning } from "../utilities/leftSidebarPosition";
 import { addSmallerSearchBarStyle } from "../utilities/other-styles";
@@ -41,13 +38,6 @@ export const dynamicFeatures = {
     updateLeftSidebarPositioning();
     enableGrokDrawerOnGrokButtonClick(data[KeyHideGrokDrawer]);
   },
-  typefullyPlugs: () => {
-    saveCurrentReplyToLink();
-    addTypefullyReplyPlug();
-    addTypefullyComposerPlug();
-    addTypefullySecurityAndAccountAccessPlug();
-    addTypefullySchedulePlug();
-  },
   navigation: (data) => {
     changeNavigationButtonsLabels(data[KeyNavigationButtonsLabels]);
   },
@@ -57,7 +47,7 @@ export const dynamicFeatures = {
     changeFollowingTimeline(data[KeyFollowingTimeline]);
   },
   sidebarButtons: async () => {
-    const data = await getStorage([KeyListsButton, KeyCommunitiesButton, KeyTopicsButton, KeyXPremiumButton, KeyTypefullyGrowTab]);
+    const data = await getStorage([KeyListsButton, KeyCommunitiesButton, KeyTopicsButton, KeyXPremiumButton]);
 
     if (!data) return;
 
@@ -65,7 +55,6 @@ export const dynamicFeatures = {
     if (data[KeyCommunitiesButton] === "on") addCommunitiesButton();
     if (data[KeyTopicsButton] === "on") addTopicsButton();
     if (data[KeyXPremiumButton] === "on") addXPremiumButton();
-    if (data[KeyTypefullyGrowTab] === "on") addAnalyticsButton();
   },
 };
 
@@ -80,7 +69,6 @@ export const runDynamicFeatures = throttle(async () => {
 
   if (data) {
     dynamicFeatures.general();
-    dynamicFeatures.typefullyPlugs();
     await dynamicFeatures.sidebarButtons();
     dynamicFeatures.timeline(data);
     dynamicFeatures.navigation(data);

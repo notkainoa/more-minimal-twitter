@@ -412,7 +412,7 @@ export const changeLatestTweets = (latestTweets) => {
 export const enableGrokDrawerOnGrokButtonClick = (hideGrokDrawer) => {
   const grokClickListener = () => {
     const grokDrawer = document.querySelector(selectors.grokDrawer);
-    grokDrawer.classList.add("typefully-grok-drawer-enabled");
+    grokDrawer.classList.add("mt-grok-drawer-enabled");
   };
 
   if (hideGrokDrawer === "off") {
@@ -451,7 +451,7 @@ export const enableGrokDrawerOnGrokButtonClick = (hideGrokDrawer) => {
     // if entry has one child and it is a button, it means the drawer is closed.
     // Remove the drawer if hideGrokDrawer is on.
     if (entry.target.children.length === 1 && entry.target.children[0].tagName === "BUTTON") {
-      grokDrawer.classList.remove("typefully-grok-drawer-enabled");
+      grokDrawer.classList.remove("mt-grok-drawer-enabled");
       let hideGrokDrawer = await getStorage(KeyHideGrokDrawer);
 
       if (hideGrokDrawer === "on") {

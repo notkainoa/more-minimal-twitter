@@ -4,7 +4,6 @@ import { applyStaticFeatures } from "./features/static";
 import addStyleSheet from "./utilities/addStyleSheet";
 import { extractColorsAsRootVars } from "./utilities/colors";
 import debounce from "./utilities/debounce";
-import { isDevelopmentMode } from "./utilities/isDevelopmentMode";
 import isMutationSkippable from "./utilities/isMutationSkippable";
 import { getStorage } from "./utilities/storage";
 
@@ -16,24 +15,8 @@ import { getStorage } from "./utilities/storage";
  * - Extracts Twitter theme colors
  */
 
-export const addStylesheets = async () => {
+export const addStylesheets = () => {
   addStyleSheet("main", chrome.runtime.getURL("css/main.css"));
-  addStyleSheet("typefully", chrome.runtime.getURL("css/typefully.css"));
-
-  // Only fetch from CDN in production
-  if (!(await isDevelopmentMode())) {
-    try {
-      const mainStylesheetFromCDN = await fetch("https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/main.css");
-      const typefullyStylesheetFromCDN = await fetch("https://raw.githubusercontent.com/typefully/minimal-twitter/main/css/typefully.css");
-      const mainText = (await mainStylesheetFromCDN.text()).trim();
-      const typefullyText = (await typefullyStylesheetFromCDN.text()).trim();
-      addStyleSheet("external", null, mainText.concat("\n\n").concat(typefullyText));
-    } catch (error) {
-      console.error("Can't fetch stylesheets from CDN", error);
-    }
-  } else {
-    console.log("🚧 Development mode, not adding CDN-cached stylesheets");
-  }
 };
 
 const addMutationObserver = () => {
@@ -64,7 +47,7 @@ const addResizeListener = () => {
 };
 
 export const initializeExtension = async () => {
-  await addStylesheets();
+  addStylesheets();
 
   const allData = await getStorage(allSettingsKeys);
   applyStaticFeatures(allData);

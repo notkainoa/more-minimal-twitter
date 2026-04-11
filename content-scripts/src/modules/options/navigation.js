@@ -1,7 +1,6 @@
 import selectors from "../../selectors";
 import svgAssets from "../svgAssets";
 import addStyles, { removeStyles } from "../utilities/addStyles";
-import { createTypefullyUrl } from "../utilities/createTypefullyUrl";
 import { addSidebarButton } from "../utilities/sidebar";
 
 // Utilities
@@ -41,7 +40,6 @@ export const changeGrokButton = (state) => changeSidebarSetting("grok", state);
 export const changeTopicsButton = (state) => changeSidebarSetting("topics", state, addTopicsButton);
 export const changeCommunitiesButton = (state) => changeSidebarSetting("communities", state, addCommunitiesButton);
 export const changeListsButton = (state) => changeSidebarSetting("lists", state, addListsButton);
-export const changeAnalyticsButton = (state) => changeSidebarSetting("analytics", state, addAnalyticsButton);
 
 let tm1;
 export const addXPremiumButton = () => {
@@ -53,30 +51,6 @@ export const addXPremiumButton = () => {
       svgAsset: svgAssets.xPremium.normal,
     });
   }, 100);
-};
-
-let tm2;
-export const addAnalyticsButton = () => {
-  clearTimeout(tm2);
-  tm2 = setTimeout(() => {
-    addSidebarButton({
-      name: "Analytics",
-      svgAsset: svgAssets.grow.normal,
-      onClick: () => {
-        const screenName = document.querySelector(`a[role="link"][data-testid="AppTabBar_Profile_Link"]`)?.getAttribute("href").replace("/", "");
-
-        const url = createTypefullyUrl(
-          {
-            utm_content: "sidebar-grow-button",
-            "mt-screen-name": screenName,
-          },
-          "grow"
-        );
-
-        if (screenName) window.open(url, "_blank");
-      },
-    });
-  }, 200);
 };
 
 export const addTopicsButton = () => {
@@ -228,11 +202,11 @@ export const changeNavigationCenter = (navigationCenter) => {
 export const hideGrokDrawer = (state) => {
   switch (state) {
     case "on":
-      // If typefully-grok-drawer-enabled class is present because we added it when grok button from a post is clicked.
+      // If mt-grok-drawer-enabled class is present because we added it when grok button from a post is clicked.
       // We don't want to hide the drawer in this case.
       addStyles(
         "grokDrawer",
-        `${selectors.grokDrawer}:not(.typefully-grok-drawer-enabled) {
+        `${selectors.grokDrawer}:not(.mt-grok-drawer-enabled) {
           display: none !important;
         }`
       );

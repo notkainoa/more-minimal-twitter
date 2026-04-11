@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener((object) => {
     return;
   }
 
-  const targetUrl = `https://typefully.com/minimal-twitter/welcome`;
+  const targetUrl = `https://github.com/notkainoa/more-minimal-twitter`;
 
   if (targetUrl) {
     chrome.tabs.create({
