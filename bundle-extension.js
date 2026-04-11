@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import { copy } from "fs-extra";
-import { copyFile, rm, writeFile } from "fs/promises";
+import { copyFile, readFile, rm, writeFile } from "fs/promises";
 import process from "process";
 import readline from "readline";
 import zipper from "zip-local";
@@ -220,6 +220,24 @@ const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundl
 
 // The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
 const fixBundleIdentifierCommand = `find "bundle/safari/Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+const SAFARI_VERSION_FILE = "./safari-version.json";
+const SAFARI_PROJECT_FILE = "./bundle/safari/Minimal Twitter/Minimal Twitter.xcodeproj/project.pbxproj";
+
+const applySafariProjectVersioning = async () => {
+  const content = await readFile(SAFARI_VERSION_FILE, "utf8");
+  const { buildNumber } = JSON.parse(content);
+
+  if (!Number.isInteger(buildNumber) || buildNumber < 1) {
+    throw new Error("Invalid Safari build number in safari-version.json");
+  }
+
+  const projectContent = await readFile(SAFARI_PROJECT_FILE, "utf8");
+  const updatedProjectContent = projectContent
+    .replace(/MARKETING_VERSION = [\d.]+;/g, `MARKETING_VERSION = ${manifest.version};`)
+    .replace(/CURRENT_PROJECT_VERSION = \d+;/g, `CURRENT_PROJECT_VERSION = ${buildNumber};`);
+
+  await writeFile(SAFARI_PROJECT_FILE, updatedProjectContent, "utf8");
+};
 
 const bundleSafari = async () => {
   await bundle(MANIFEST_FIREFOX, "bundle/firefox");
@@ -241,6 +259,7 @@ const bundleSafari = async () => {
   try {
     await runCommand(generateSafariProjectCommand, true);
     await runCommand(fixBundleIdentifierCommand, true);
+    await applySafariProjectVersioning();
   } finally {
     clearInterval(intervalId);
   }

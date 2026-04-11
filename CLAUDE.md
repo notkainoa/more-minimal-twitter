@@ -156,18 +156,20 @@ To add a new feature toggle:
 
 1. Run `yarn bump-version` (prompts for patch/minor/major). This automatically updates:
    - `bundle-extension.js` - main version number
-   - Xcode project (`project.pbxproj`) - MARKETING_VERSION and CURRENT_PROJECT_VERSION (build number incremented by 1)
+   - `safari-version.json` - Safari build number metadata (incremented by 1)
 
-2. Run `yarn build:all` to create bundles for all browsers
+2. Run `yarn build:safari` when you need a Safari project. The generated Xcode project will be stamped with the version from `bundle-extension.js` and the build number from `safari-version.json`.
 
-3. Commit and tag:
+3. Run `yarn build:chrome` / `yarn build:firefox` / other bundle commands as needed to create distributables
+
+4. Commit and tag:
    ```bash
    git add . && git commit -m "Bump version to X.Y.Z"
    git tag vX.Y.Z
    git push && git push --tags
    ```
 
-4. Submit bundles to browser stores (Chrome Web Store, Firefox Add-ons, App Store via Xcode)
+5. Submit bundles to browser stores (Chrome Web Store, Firefox Add-ons, App Store via Xcode)
 
 ### Update Screen Behavior
 
