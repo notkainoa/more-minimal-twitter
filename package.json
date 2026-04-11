@@ -1,6 +1,7 @@
 {
   "name": "minimal-twitter",
   "type": "module",
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "build": "node ./bundle-extension.js",
     "bundle": "node ./bundle-extension.js",
