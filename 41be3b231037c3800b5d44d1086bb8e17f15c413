@@ -1,0 +1,27 @@
+bundle-extension.js
+  3103e6677ec810a3 19-50,158,162,165,177,236-304,307,310-311,313-316,318
+CLAUDE.md
+  3103e6677ec810a3 17-19
+package.json
+  3103e6677ec810a3 7-10,12-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "41be3b231037c3800b5d44d1086bb8e17f15c413",
+  "prompts": {
+    "3103e6677ec810a3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7e2f-4af4-7e00-ab12-c8024d2d9a5b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 139,
+      "total_deletions": 89,
+      "accepted_lines": 124,
+      "overriden_lines": 0
+    }
+  }
+}
