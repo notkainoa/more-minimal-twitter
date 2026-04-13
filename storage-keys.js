@@ -18,6 +18,7 @@ export const KeyExploreButton = "exploreButton";
 export const KeyNotificationsButton = "notificationsButton";
 export const KeyMessagesButton = "messagesButton";
 export const KeyBookmarksButton = "bookmarksButton";
+export const KeyCreatorStudioButton = "creatorStudioButton";
 export const KeyJobsButton = "jobsButton";
 export const KeyArticlesButton = "articles";
 export const KeyProfileButton = "profileButton";
@@ -40,6 +41,7 @@ export const KeyTitleNotifications = "titleNotifications";
 export const KeyCustomCss = "customCss";
 export const KeyHideViewCount = "hideViewCount";
 export const KeyHideGrokDrawer = "hideGrokDrawer";
+export const KeyHideMessagesDrawer = "hideMessagesDrawer";
 
 export const allSettingsKeys = [
   // Extension Status
@@ -68,6 +70,7 @@ export const allSettingsKeys = [
   KeyNavigationCenter,
   KeyUnreadCountBadge,
   KeyHideGrokDrawer,
+  KeyHideMessagesDrawer,
 
   // Interface Features
   KeyInterFont,
@@ -82,6 +85,7 @@ export const allSettingsKeys = [
   KeyNotificationsButton,
   KeyMessagesButton,
   KeyGrokButton,
+  KeyCreatorStudioButton,
   KeyXPremiumButton,
   KeyListsButton,
   KeyBookmarksButton,
@@ -126,6 +130,7 @@ export const defaultPreferences = {
   [KeyNavigationCenter]: "off",
   [KeyUnreadCountBadge]: "off",
   [KeyHideGrokDrawer]: "on",
+  [KeyHideMessagesDrawer]: "on",
 
   // Interface Features
   [KeyInterFont]: "off",
@@ -140,6 +145,7 @@ export const defaultPreferences = {
   [KeyNotificationsButton]: "on",
   [KeyMessagesButton]: "on",
   [KeyGrokButton]: "on",
+  [KeyCreatorStudioButton]: "on",
   [KeyXPremiumButton]: "off",
   [KeyListsButton]: "on",
   [KeyBookmarksButton]: "on",

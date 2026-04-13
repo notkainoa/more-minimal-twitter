@@ -15,6 +15,7 @@ selectors.sidebarLinks = {
   notifications: `${selectors.leftSidebar} [data-testid="AppTabBar_Notifications_Link"]`,
   messages: `${selectors.leftSidebar} [data-testid="AppTabBar_DirectMessage_Link"]`,
   bookmarks: `${selectors.leftSidebar} a[href*="bookmarks"]`,
+  creatorStudio: `${selectors.leftSidebar} a[href*="/i/jf/creators/studio"][role="link"][aria-label]`,
   jobs: `${selectors.leftSidebar} a[href*="jobs"]`,
   articles: 'a[href="/compose/articles"]',
   topics: `${selectors.leftSidebar} a[href*=topics]`,
@@ -32,9 +33,12 @@ selectors.accountSwitcherLabel = `${selectors.accountSwitcherButton} > div:not(:
 selectors.leftSidebarLabel_hover = `${selectors.leftSidebarLinks}:hover > * > div > div + div:last-child`;
 selectors.accountSwitcherLabel_hover = `${selectors.accountSwitcherButton}:hover > div:not(:first-child)`;
 selectors.rightSidebar = `[data-testid="sidebarColumn"]`;
-// Add Grok drawer selector
+// Drawer selectors
 selectors.grokDrawer = `[data-testid="GrokDrawer"]`;
 selectors.grokDrawerHeader = `div[data-testid="GrokDrawerHeader"]`;
+selectors.messagesDrawer = `[data-testid="chat-drawer-root"]`;
+selectors.messagesDrawerMain = `[data-testid="chat-drawer-main"]`;
+selectors.messagesDrawerLegacy = `[data-testid="DMDrawer"]`;
 // Timeline
 selectors.timelineTablist = `div[data-testid='ScrollSnap-List'][role='tablist']`;
 selectors.timelineTab = `div[role='tab']`;

@@ -59,7 +59,8 @@ export default function isMutationSkippable(mutationsList) {
     if (el?.nodeName === "STYLE") return true;
 
     // DM drawer
-    if (el?.closest("[data-testid='DMDrawer']") || t?.closest("[data-testid='DMDrawer']")) return true;
+    if (el?.closest("[data-testid='DMDrawer'], [data-testid='chat-drawer-root'], [data-testid='chat-drawer-main']")) return true;
+    if (t?.closest("[data-testid='DMDrawer'], [data-testid='chat-drawer-root'], [data-testid='chat-drawer-main']")) return true;
 
     // Trends drawer
     if (el?.closest("[data-testid='sidebarColumn']") || t?.closest("[data-testid='sidebarColumn']")) return true;

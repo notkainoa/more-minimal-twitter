@@ -9,12 +9,14 @@ import {
   KeyArticlesButton,
   KeyBookmarksButton,
   KeyCommunitiesButton,
+  KeyCreatorStudioButton,
   KeyCustomCss,
   KeyExploreButton,
   KeyFollowCount,
   KeyFollowingTimeline,
   KeyGrokButton,
   KeyHideGrokDrawer,
+  KeyHideMessagesDrawer,
   KeyHideViewCount,
   KeyHomeButton,
   KeyInterFont,
@@ -55,6 +57,7 @@ import {
   changeArticlesButton,
   changeBookmarksButton,
   changeCommunitiesButton,
+  changeCreatorStudioButton,
   changeExploreButton,
   changeGrokButton,
   changeHomeButton,
@@ -71,6 +74,7 @@ import {
   changeVerifiedOrgsButton,
   changeXPremiumButton,
   hideGrokDrawer,
+  hideMessagesDrawer,
 } from "../options/navigation";
 import {
   changeFollowingTimeline,
@@ -109,6 +113,7 @@ export const staticFeatures = {
     changeNavigationCenter(data[KeyNavigationCenter]);
     changeUnreadCountBadge(data[KeyUnreadCountBadge]);
     hideGrokDrawer(data[KeyHideGrokDrawer]);
+    hideMessagesDrawer(data[KeyHideMessagesDrawer]);
   },
   interface: (data) => {
     changeInterFont(data[KeyInterFont]);
@@ -123,6 +128,7 @@ export const staticFeatures = {
     changeNotificationsButton(data[KeyNotificationsButton]);
     changeMessagesButton(data[KeyMessagesButton]);
     changeBookmarksButton(data[KeyBookmarksButton]);
+    changeCreatorStudioButton(data[KeyCreatorStudioButton]);
     changeJobsButton(data[KeyJobsButton]);
     changeArticlesButton(data[KeyArticlesButton]);
     changeCommunitiesButton(data[KeyCommunitiesButton]);

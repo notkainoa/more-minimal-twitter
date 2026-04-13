@@ -31,6 +31,7 @@ export const changeExploreButton = (state) => changeSidebarSetting("explore", st
 export const changeNotificationsButton = (state) => changeSidebarSetting("notifications", state);
 export const changeMessagesButton = (state) => changeSidebarSetting("messages", state);
 export const changeBookmarksButton = (state) => changeSidebarSetting("bookmarks", state);
+export const changeCreatorStudioButton = (state) => changeSidebarSetting("creatorStudio", state);
 export const changeJobsButton = (state) => changeSidebarSetting("jobs", state);
 export const changeArticlesButton = (state) => changeSidebarSetting("articles", state);
 export const changeVerifiedOrgsButton = (state) => changeSidebarSetting("verifiedOrgs", state);
@@ -213,6 +214,24 @@ export const hideGrokDrawer = (state) => {
       break;
     case "off":
       removeStyles("grokDrawer");
+      break;
+  }
+};
+
+export const hideMessagesDrawer = (state) => {
+  switch (state) {
+    case "on":
+      addStyles(
+        "messagesDrawer",
+        `${selectors.messagesDrawer},
+        ${selectors.messagesDrawerLegacy} {
+          display: none !important;
+        }`
+      );
+      break;
+    case "off":
+      removeStyles("messagesDrawer");
+      removeStyles("messagesDrawerVisibility");
       break;
   }
 };

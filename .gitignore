@@ -39,8 +39,7 @@ node_modules
 package-lock.json
 out
 dist
-bundle/chrome
-bundle/firefox
+bundle/
 .vscode
 
 # xcode project

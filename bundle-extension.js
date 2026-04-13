@@ -1,6 +1,6 @@
 import { exec } from "child_process";
 import { copy } from "fs-extra";
-import { copyFile, rm, writeFile } from "fs/promises";
+import { copyFile, readFile, rm, writeFile } from "fs/promises";
 import process from "process";
 import readline from "readline";
 import zipper from "zip-local";
@@ -146,86 +146,65 @@ const MANIFEST_FIREFOX = {
   },
 };
 
-const bundle = async (manifest, bundleDirectory) => {
+const runBuildScript = async (directory) => {
+  const intervalId = startSpinner("Building popup and content scripts...");
+
   try {
-    // Remove old bundle directory
-    await rm(bundleDirectory, { recursive: true, force: true }); // requires node 14+
-    console.log(`🧹  Cleaned up \`${bundleDirectory}\` directory.`);
-
-    // Run both build scripts
-    const runBuildScript = (directory) => {
-      return new Promise(async (resolve, reject) => {
-        const intervalId = startSpinner("Building popup and content scripts...");
-
-        try {
-          await runCommand(`cd ./${directory} && yarn && yarn build`);
-          stopSpinner(intervalId);
-          resolve();
-        } catch (error) {
-          stopSpinner(intervalId);
-          console.error(
-            `Error running build script for ${directory}: ${error}`
-          );
-          reject(error);
-        }
-      });
-    };
-
-    await runBuildScript("popup");
-    await runBuildScript("content-scripts");
-
-    stopSpinner(null);
-    console.log("🔥  Built popup and content scripts.");
-
-    // Bundle popup Next.js export
-    await copy("popup/out", `${bundleDirectory}`);
-    console.log(`🚗  Moved export to bundle.`);
-
-    // Bundle content-scripts
-    await copy("content-scripts/dist", `${bundleDirectory}/dist`);
-    console.log(`🚗  Moved content_scripts to bundle.`);
-
-    // Bundle background.js
-    await copyFile("background.js", `${bundleDirectory}/background.js`);
-    console.log(`🚗  Moved background.js to bundle.`);
-
-    // Bundle css
-    await copy("css", `${bundleDirectory}/css`);
-    console.log(`🚗  Moved css to bundle.`);
-
-    // Bundle fonts
-    await copy("fonts", `${bundleDirectory}/fonts`);
-    console.log(`🚗  Moved fonts to bundle.`);
-
-    // Bundle images
-    await copy("images", `${bundleDirectory}/images`);
-    console.log(`🚗  Moved images to bundle.`);
-
-    // Create manifest
-    await writeFile(
-      `${bundleDirectory}/manifest.json`,
-      Buffer.from(JSON.stringify(manifest, null, 2)),
-      "utf8"
-    );
-
-    // Done.
-    console.log(`📦  Bundled \`${bundleDirectory}\`.`);
-
-    // Zip the directory
-    zipper.sync
-      .zip(`./${bundleDirectory}`)
-      .compress()
-      .save(`./bundle/${bundleDirectory.replace("bundle/", "")}.zip`);
-
-    console.log(
-      `🧬  Zipped \`${bundleDirectory}\` to \`bundle/${bundleDirectory.replace(
-        "bundle/",
-        ""
-      )}.zip\`.`
-    );
+    await runCommand(`cd ./${directory} && yarn && yarn build`);
   } catch (error) {
-    console.error(error);
+    console.error(`Error running build script for ${directory}: ${error}`);
+    throw error;
+  } finally {
+    stopSpinner(intervalId);
   }
+};
+
+const bundle = async (manifest, bundleDirectory) => {
+  await rm(bundleDirectory, { recursive: true, force: true });
+  console.log(`🧹  Cleaned up \`${bundleDirectory}\` directory.`);
+
+  await runBuildScript("popup");
+  await runBuildScript("content-scripts");
+
+  console.log("🔥  Built popup and content scripts.");
+
+  await copy("popup/out", `${bundleDirectory}`);
+  console.log("🚗  Moved export to bundle.");
+
+  await copy("content-scripts/dist", `${bundleDirectory}/dist`);
+  console.log("🚗  Moved content_scripts to bundle.");
+
+  await copyFile("background.js", `${bundleDirectory}/background.js`);
+  console.log("🚗  Moved background.js to bundle.");
+
+  await copy("css", `${bundleDirectory}/css`);
+  console.log("🚗  Moved css to bundle.");
+
+  await copy("fonts", `${bundleDirectory}/fonts`);
+  console.log("🚗  Moved fonts to bundle.");
+
+  await copy("images", `${bundleDirectory}/images`);
+  console.log("🚗  Moved images to bundle.");
+
+  await writeFile(
+    `${bundleDirectory}/manifest.json`,
+    Buffer.from(JSON.stringify(manifest, null, 2)),
+    "utf8"
+  );
+
+  console.log(`📦  Bundled \`${bundleDirectory}\`.`);
+
+  zipper.sync
+    .zip(`./${bundleDirectory}`)
+    .compress()
+    .save(`./bundle/${bundleDirectory.replace("bundle/", "")}.zip`);
+
+  console.log(
+    `🧬  Zipped \`${bundleDirectory}\` to \`bundle/${bundleDirectory.replace(
+      "bundle/",
+      ""
+    )}.zip\`.`
+  );
 };
 
 const bundleAll = async () => {
@@ -237,44 +216,53 @@ const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundl
 
 // The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
 const fixBundleIdentifierCommand = `find "bundle/safari/Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+const SAFARI_VERSION_FILE = "./safari-version.json";
+const SAFARI_PROJECT_FILE = "./bundle/safari/Minimal Twitter/Minimal Twitter.xcodeproj/project.pbxproj";
+
+const applySafariProjectVersioning = async () => {
+  const content = await readFile(SAFARI_VERSION_FILE, "utf8");
+  const { buildNumber } = JSON.parse(content);
+
+  if (!Number.isInteger(buildNumber) || buildNumber < 1) {
+    throw new Error("Invalid Safari build number in safari-version.json");
+  }
+
+  const projectContent = await readFile(SAFARI_PROJECT_FILE, "utf8");
+  const updatedProjectContent = projectContent
+    .replace(
+      /MARKETING_VERSION = [\d.]+;/g,
+      `MARKETING_VERSION = ${manifest.version};`
+    )
+    .replace(
+      /CURRENT_PROJECT_VERSION = \d+;/g,
+      `CURRENT_PROJECT_VERSION = ${buildNumber};`
+    );
+
+  await writeFile(SAFARI_PROJECT_FILE, updatedProjectContent, "utf8");
+};
 
 const bundleSafari = async () => {
   await bundle(MANIFEST_FIREFOX, "bundle/firefox");
 
   const intervalId = startSpinner("Bundling Safari...");
 
-  await runCommand(generateSafariProjectCommand, true);
-  await runCommand(fixBundleIdentifierCommand, true);
-
-  stopSpinner(intervalId);
-};
-
-const normalizeBundleTarget = (value) => value?.trim().toLowerCase();
-
-const runBundleTarget = async (target) => {
-  switch (normalizeBundleTarget(target)) {
-    case "chrome":
-      await bundle(MANIFEST_CHROME, "bundle/chrome");
-      return true;
-
-    case "firefox":
-      await bundle(MANIFEST_FIREFOX, "bundle/firefox");
-      return true;
-
-    case "safari":
-      await bundleSafari();
-      return true;
-
-    case "all":
-      await bundleAll();
-      return true;
-
-    default:
-      return false;
+  try {
+    await runCommand(generateSafariProjectCommand, true);
+    await runCommand(fixBundleIdentifierCommand, true);
+    await applySafariProjectVersioning();
+  } finally {
+    stopSpinner(intervalId);
   }
 };
 
-const promptForBundleTarget = () => {
+const bundleActions = {
+  all: bundleAll,
+  chrome: async () => bundle(MANIFEST_CHROME, "bundle/chrome"),
+  firefox: async () => bundle(MANIFEST_FIREFOX, "bundle/firefox"),
+  safari: bundleSafari,
+};
+
+const promptForBrowser = async () => {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -291,31 +279,34 @@ const promptForBundleTarget = () => {
   });
 };
 
-const main = async () => {
-  const cliTarget = process.argv[2];
+const normalizeBrowserTarget = (browser) => browser?.trim().toLowerCase();
 
-  if (cliTarget) {
-    const handled = await runBundleTarget(cliTarget);
+const run = async () => {
+  const browserArg = normalizeBrowserTarget(process.argv[2]);
 
-    if (!handled) {
-      console.error(
-        `Unknown bundle target \`${cliTarget}\`. Use one of: all, chrome, firefox, safari.`
+  if (browserArg) {
+    const bundleAction = bundleActions[browserArg];
+
+    if (!bundleAction) {
+      throw new Error(
+        `Unknown bundle target \`${process.argv[2]}\`. Use one of: all, chrome, firefox, safari.`
       );
-      process.exit(1);
     }
 
-    process.exit(0);
+    await bundleAction();
+    return;
   }
 
-  const promptTarget = await promptForBundleTarget();
-  const handled = await runBundleTarget(promptTarget);
+  const browser = normalizeBrowserTarget(await promptForBrowser());
+  const bundleAction = bundleActions[browser] || bundleActions.all;
 
-  if (!handled) {
-    await bundleAll();
-  }
+  await bundleAction();
 };
 
-await main();
+run().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
 
 /*--- Bundle without prompting
 await bundleAll();
