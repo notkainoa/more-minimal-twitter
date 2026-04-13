@@ -1,0 +1,47 @@
+bundle-extension.js
+  3103e6677ec810a3 3,149-150,153,155-158,160,162-164,166-167,169-207,219-220,222-224,226-228,230-239,241,244-245,247,249-254,258-265,282,284-285,287-292,296-297,300-301,303,306-309
+CLAUDE.md
+  3103e6677ec810a3 17-20,39,151,160,162,164-166,173
+bump-version.js
+  3103e6677ec810a3 7,55,57-58,60-61,64-65,67-74,114-115
+safari-version.json
+  3103e6677ec810a3 2
+.github/CONTRIBUTING.md
+  3103e6677ec810a3 9,56-60
+content-scripts/src/modules/utilities/isMutationSkippable.js
+  3103e6677ec810a3 62-63
+.gitignore
+  3103e6677ec810a3 42
+content-scripts/src/modules/features/static.js
+  3103e6677ec810a3 12,19,60,77,116,131
+content-scripts/src/modules/features/dynamic.js
+  3103e6677ec810a3 13,23,68,81
+content-scripts/src/modules/options/navigation.js
+  3103e6677ec810a3 34,220-234
+popup/components/sections/NavigationSection.js
+  3103e6677ec810a3 8,12,112-120,221-222,258
+storage-keys.js
+  3103e6677ec810a3 21,44,73,88,133,148
+content-scripts/src/selectors.js
+  3103e6677ec810a3 18,36,39-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "3d78ec0fa0b29be21cefb0e219b968b788dab084",
+  "prompts": {
+    "3103e6677ec810a3": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019d7e2f-4af4-7e00-ab12-c8024d2d9a5b",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Kainoa Newton",
+      "messages": [],
+      "total_additions": 919,
+      "total_deletions": 7581,
+      "accepted_lines": 892,
+      "overriden_lines": 0
+    }
+  }
+}
