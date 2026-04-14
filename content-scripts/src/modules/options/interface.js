@@ -89,6 +89,37 @@ export const changeTweetButton = (tweetButton) => {
   }
 };
 
+export const changeTweetButtonPosition = (tweetButtonPosition) => {
+  switch (tweetButtonPosition) {
+    case "sidebar":
+      removeStyles("tweetButtonPosition");
+      break;
+
+    case "floating":
+      addStyles(
+        "tweetButtonPosition",
+        `
+        @media only screen and (min-width: 1000px) {
+          ${selectors.accountSwitcherButton} {
+            bottom: 12px;
+          }
+
+          ${selectors.tweetButton} {
+            position: fixed;
+            right: 16px;
+            bottom: 24px;
+          }
+
+          ${selectors.leftSidebar} > div > div > div {
+            overflow: visible; /* Safari overflow issue: https://bugs.webkit.org/show_bug.cgi?id=160953 */
+          }
+        }
+        `
+      );
+      break;
+  }
+};
+
 export const changeHideSearchBar = (searchBar) => {
   switch (searchBar) {
     case "off":

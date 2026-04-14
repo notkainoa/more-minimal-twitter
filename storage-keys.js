@@ -42,6 +42,7 @@ export const KeyCustomCss = "customCss";
 export const KeyHideViewCount = "hideViewCount";
 export const KeyHideGrokDrawer = "hideGrokDrawer";
 export const KeyHideMessagesDrawer = "hideMessagesDrawer";
+export const KeyTweetButtonPosition = "tweetButtonPosition";
 
 export const allSettingsKeys = [
   // Extension Status
@@ -78,6 +79,7 @@ export const allSettingsKeys = [
   KeyTransparentSearch,
   KeyTitleNotifications,
   KeyTweetButton,
+  KeyTweetButtonPosition,
 
   // Sidebar Features
   KeyHomeButton,
@@ -138,6 +140,7 @@ export const defaultPreferences = {
   [KeyTransparentSearch]: "off",
   [KeyTitleNotifications]: "on",
   [KeyTweetButton]: "on",
+  [KeyTweetButtonPosition]: "floating",
 
   // Sidebar Features
   [KeyHomeButton]: "on",

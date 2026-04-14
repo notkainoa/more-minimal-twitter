@@ -45,6 +45,7 @@ import {
   KeyTransparentSearch,
   KeyTrendsHomeTimeline,
   KeyTweetButton,
+  KeyTweetButtonPosition,
   KeyUnreadCountBadge,
   KeyVerifiedOrgsButton,
   KeyXPremiumButton,
@@ -52,7 +53,7 @@ import {
 import { changeCustomCss } from "../options/customCss";
 import { changeFollowingAndFollowersCounts, changeLikeCount, changeReplyCount, changeRetweetCount } from "../options/hideVanityCounts";
 import changeHideViewCounts from "../options/hideViewCount";
-import { changeHideSearchBar, changeInterFont, changeTitleNotifications, changeTransparentSearchBar, changeTweetButton } from "../options/interface";
+import { changeHideSearchBar, changeInterFont, changeTitleNotifications, changeTransparentSearchBar, changeTweetButton, changeTweetButtonPosition } from "../options/interface";
 import {
   changeArticlesButton,
   changeBookmarksButton,
@@ -121,6 +122,7 @@ export const staticFeatures = {
     changeTransparentSearchBar(data[KeyTransparentSearch]);
     changeTitleNotifications(data[KeyTitleNotifications]);
     changeTweetButton(data[KeyTweetButton]);
+    changeTweetButtonPosition(data[KeyTweetButtonPosition]);
   },
   sidebar: (data) => {
     changeHomeButton(data[KeyHomeButton]);

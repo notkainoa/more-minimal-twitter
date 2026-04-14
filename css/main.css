@@ -48,25 +48,10 @@ a[href*="quick_promote_web"] {
     margin-bottom: 0px !important;
   }
 
-  /* Align account button with floating tweet button */
-  [data-testid="SideNav_AccountSwitcher_Button"] {
-    bottom: 12px;
-  }
-
   /* Shrink space if there are a lot of items in left navigation */
   header[role="banner"] > div > div > div > div:first-child {
     flex-shrink: 1;
     overflow-y: auto;
-  }
-
-  /* Floating Tweet Button */
-  [data-testid="SideNav_NewTweet_Button"] {
-    position: fixed;
-    right: 16px;
-    bottom: 24px;
-  }
-  header[role="banner"] > div > div > div {
-    overflow: visible; /* Safari overflow issue: https://bugs.webkit.org/show_bug.cgi?id=160953 */
   }
 }
 
