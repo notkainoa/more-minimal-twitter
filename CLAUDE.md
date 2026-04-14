@@ -15,8 +15,9 @@ Repository: https://github.com/typefully/minimal-twitter
 Requires [classic yarn](https://classic.yarnpkg.com/lang/en/docs/install/).
 
 - `yarn build` or `yarn bundle` - Builds and bundles the extension, prompting for `All`, `Chrome`, `Firefox`, or `Safari`
-- `yarn build:all|chrome|firefox|safari` - Builds a specific browser target without prompting
+- `yarn build:all|chrome|firefox|safari` - Builds a specific browser target without prompting (`all` preserves the current Chrome + Firefox behavior)
 - `yarn bundle:all|chrome|firefox|safari` - Same as the matching `build:*` script
+- `yarn build:safari` and `yarn bundle:safari` are macOS/Xcode-only and convert the Firefox build with `xcrun safari-web-extension-converter`
 - Builds both popup (Next.js) and content-scripts (Rollup) automatically
 - Creates bundled packages in `/bundle/` directory for Chrome, Firefox, and Safari
 
@@ -147,7 +148,7 @@ To add a new feature toggle:
 
 - Chrome: Manifest V3 with service worker background
 - Firefox: Manifest V2 with background scripts
-- Safari: Converted from Firefox build using xcrun safari-web-extension-converter
+- Safari: Converted from Firefox build using `xcrun safari-web-extension-converter`
 - Manifests defined in `bundle-extension.js`
 
 ## Releasing Updates
