@@ -1,7 +1,10 @@
+import { KeyTweetButtonPosition } from "../../../../storage-keys";
 import selectors from "../../selectors";
+import { changeTweetButtonPosition } from "./interface";
 import svgAssets from "../svgAssets";
 import addStyles, { removeStyles } from "../utilities/addStyles";
 import { addSidebarButton } from "../utilities/sidebar";
+import { getStorage } from "../utilities/storage";
 
 // Utilities
 
@@ -178,6 +181,9 @@ align-items: flex-start;
 
       break;
   }
+
+  const tweetButtonPosition = await getStorage(KeyTweetButtonPosition);
+  changeTweetButtonPosition(tweetButtonPosition, setting);
 };
 
 export const changeNavigationCenter = (navigationCenter) => {

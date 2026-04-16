@@ -1,5 +1,6 @@
-import { KeyInterFont, KeySearchBar, KeyTitleNotifications, KeyTransparentSearch, KeyTweetButton } from "../../../storage-keys";
+import { KeyInterFont, KeySearchBar, KeyTitleNotifications, KeyTransparentSearch, KeyTweetButton, KeyTweetButtonPosition } from "../../../storage-keys";
 import SectionLabel from "../ui/SectionLabel";
+import { SegmentedControl } from "../ui/SegmentedControl";
 import SwitchControl from "../ui/SwitchControl";
 
 const InterfaceSection = () => (
@@ -13,6 +14,22 @@ const InterfaceSection = () => (
             <SwitchControl label="Search Bar" storageKey={KeySearchBar} />
             <SwitchControl label="Transparent Search Bar" storageKey={KeyTransparentSearch} />
             <SwitchControl label="Tweet Button" storageKey={KeyTweetButton} />
+            <div className="flex items-center gap-x-4">
+              <span className="text-[15px] font-medium whitespace-nowrap">Tweet Button Position</span>
+              <SegmentedControl
+                storageKey={KeyTweetButtonPosition}
+                segments={[
+                  {
+                    value: "floating",
+                    label: "Floating"
+                  },
+                  {
+                    value: "sidebar",
+                    label: "Sidebar"
+                  }
+                ]}
+              />
+            </div>
             <SwitchControl label="Notifications in Title" storageKey={KeyTitleNotifications} />
           </div>
         </div>
