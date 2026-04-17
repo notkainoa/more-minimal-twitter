@@ -31,12 +31,12 @@ const Header = () => (
         Share
       </a>
       <h1 className="text-xl font-extrabold">
-        <span>Minimal Twitter</span>
+        <span>More Minimal Twitter</span>
       </h1>
     </div>
     <p className="pt-3 pb-3 text-sm font-medium leading-5 dark:text-x-accent1Dark text-x-accent1">
       <a href="https://typefully.com/minimal-twitter" target="_blank" rel="noreferrer" className="underline">
-        Minimal-Twitter
+        More Minimal X/Twitter
       </a>
       , without all the BS
     </p>

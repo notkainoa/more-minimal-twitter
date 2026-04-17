@@ -49,8 +49,8 @@ const stopSpinner = (intervalId) => {
 };
 
 let manifest = {
-  name: "Minimal Theme for Twitter / X",
-  short_name: "Minimal Twitter",
+  name: "More Minimal Theme for Twitter / X",
+  short_name: "More Minimal Twitter",
   description: "Refine and declutter the 𝕏/Twitter web experience.",
   version: "6.4.1",
   icons: {
@@ -103,7 +103,7 @@ const MANIFEST_CHROME = {
       32: "images/MinimalTwitterIcon32.png",
       48: "images/MinimalTwitterIcon48.png",
     },
-    default_title: "Minimal Twitter",
+    default_title: "More Minimal Twitter",
     default_popup: "index.html",
   },
 };
@@ -141,7 +141,7 @@ const MANIFEST_FIREFOX = {
       32: "images/MinimalTwitterIcon32.png",
       48: "images/MinimalTwitterIcon48.png",
     },
-    default_title: "Minimal Twitter",
+    default_title: "More Minimal Twitter",
     default_popup: "index.html",
   },
 };
@@ -212,12 +212,12 @@ const bundleAll = async () => {
   await bundle(MANIFEST_FIREFOX, "bundle/firefox");
 };
 
-const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'Minimal Twitter' --bundle-identifier 'com.typefully.minimal-twitter'`;
+const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'More Minimal Twitter' --bundle-identifier 'com.typefully.minimal-twitter'`;
 
 // The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
-const fixBundleIdentifierCommand = `find "bundle/safari/Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+const fixBundleIdentifierCommand = `find "bundle/safari/More Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
 const SAFARI_VERSION_FILE = "./safari-version.json";
-const SAFARI_PROJECT_FILE = "./bundle/safari/Minimal Twitter/Minimal Twitter.xcodeproj/project.pbxproj";
+const SAFARI_PROJECT_FILE = "./bundle/safari/More Minimal Twitter/More Minimal Twitter.xcodeproj/project.pbxproj";
 
 const applySafariProjectVersioning = async () => {
   const content = await readFile(SAFARI_VERSION_FILE, "utf8");
