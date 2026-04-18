@@ -215,7 +215,7 @@ const bundleAll = async () => {
 const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'More Minimal X' --bundle-identifier 'com.typefully.minimal-twitter'`;
 
 // The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
-const fixBundleIdentifierCommand = `find "bundle/safari/More Minimal X" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+const fixBundleIdentifierCommand = `find "bundle/safari/More Minimal X" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.More-Minimal-X/com.typefully.minimal-twitter/g' {} +`;
 const SAFARI_VERSION_FILE = "./safari-version.json";
 const SAFARI_PROJECT_FILE = "./bundle/safari/More Minimal X/More Minimal X.xcodeproj/project.pbxproj";
 
