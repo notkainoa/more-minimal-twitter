@@ -1,9 +1,9 @@
 <p align="center">
-  <img width="80px" alt="Minimal Twitter App Icon" src=".github/assets/MinimalTwitterIcon.png" />
+  <img width="80px" alt="More Minimal X App Icon" src=".github/assets/MinimalTwitterIcon.png" />
 </p>
 
 <h1 align="center">
-  Minimal Theme for Twitter / 𝕏<br/>
+  More Minimal Theme for X / Twitter<br/>
   by <a href="https://typefully.com/?ref=minimal-twitter">Typefully</a>
 </h1>
 
@@ -11,7 +11,7 @@ Available on [Chrome](https://chrome.google.com/webstore/detail/pobhoodpcipjmedf
 
 ![Hero](.github/assets/hero.png)
 
-**Minimal Theme for Twitter / X** is a browser extension originally made by [Thomas Wang](https://thomas.wang), and now developed by the [Typefully](https://typefully.com/?ref=minimal-twitter) team. To contribute / see development instructions, go to [CONTRIBUTING](./.github/CONTRIBUTING.md).
+**More Minimal Theme for X / Twitter** is a browser extension originally made by [Thomas Wang](https://thomas.wang), and now developed by the [Typefully](https://typefully.com/?ref=minimal-twitter) team. To contribute / see development instructions, go to [CONTRIBUTING](./.github/CONTRIBUTING.md).
 
 ## Description
 

@@ -1,7 +1,7 @@
 import createTweetLink from "../../utilities/createTweetLink";
 
 const tweet = {
-  text: "More Minimal Twitter makes 𝕏 much nicer and cleaner",
+  text: "More Minimal X makes 𝕏 much nicer and cleaner",
   url: "https://github.com/notkainoa/more-minimal-twitter",
 };
 
@@ -31,12 +31,12 @@ const Header = () => (
         Share
       </a>
       <h1 className="text-xl font-extrabold">
-        <span>Minimal Twitter</span>
+        <span>More Minimal X</span>
       </h1>
     </div>
     <p className="pt-3 pb-3 text-sm font-medium leading-5 dark:text-x-accent1Dark text-x-accent1">
       <a href="https://typefully.com/minimal-twitter" target="_blank" rel="noreferrer" className="underline">
-        Minimal-Twitter
+        More Minimal X
       </a>
       , without all the BS
     </p>
