@@ -49,15 +49,15 @@ const stopSpinner = (intervalId) => {
 };
 
 let manifest = {
-  name: "More Minimal Theme for Twitter / X",
-  short_name: "More Minimal Twitter",
+  name: "More Minimal Theme for X / Twitter",
+  short_name: "More Minimal X",
   description: "Refine and declutter the 𝕏/Twitter web experience.",
   version: "6.4.1",
   icons: {
-    16: "images/MinimalTwitterIcon16.png",
-    32: "images/MinimalTwitterIcon32.png",
-    48: "images/MinimalTwitterIcon48.png",
-    128: "images/MinimalTwitterIcon128.png",
+    16: "images/MoreMinimalX.png",
+    32: "images/MoreMinimalX.png",
+    48: "images/MoreMinimalX.png",
+    128: "images/MoreMinimalX.png",
   },
   permissions: ["storage"],
   options_ui: {
@@ -99,11 +99,11 @@ const MANIFEST_CHROME = {
   ],
   action: {
     default_icon: {
-      16: "images/MinimalTwitterIcon16.png",
-      32: "images/MinimalTwitterIcon32.png",
-      48: "images/MinimalTwitterIcon48.png",
+      16: "images/MoreMinimalX.png",
+      32: "images/MoreMinimalX.png",
+      48: "images/MoreMinimalX.png",
     },
-    default_title: "More Minimal Twitter",
+    default_title: "More Minimal X",
     default_popup: "index.html",
   },
 };
@@ -137,11 +137,11 @@ const MANIFEST_FIREFOX = {
   ],
   browser_action: {
     default_icon: {
-      16: "images/MinimalTwitterIcon16.png",
-      32: "images/MinimalTwitterIcon32.png",
-      48: "images/MinimalTwitterIcon48.png",
+      16: "images/MoreMinimalX.png",
+      32: "images/MoreMinimalX.png",
+      48: "images/MoreMinimalX.png",
     },
-    default_title: "More Minimal Twitter",
+    default_title: "More Minimal X",
     default_popup: "index.html",
   },
 };
@@ -212,12 +212,12 @@ const bundleAll = async () => {
   await bundle(MANIFEST_FIREFOX, "bundle/firefox");
 };
 
-const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'More Minimal Twitter' --bundle-identifier 'com.typefully.minimal-twitter'`;
+const generateSafariProjectCommand = `xcrun safari-web-extension-converter bundle/firefox --project-location bundle/safari --app-name 'More Minimal X' --bundle-identifier 'com.typefully.minimal-twitter'`;
 
 // The first command currently ignores the full --bundle-identifier flag (it still take the company name), so a replace is required to make sure it matches our bundle identifier
-const fixBundleIdentifierCommand = `find "bundle/safari/More Minimal Twitter" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
+const fixBundleIdentifierCommand = `find "bundle/safari/More Minimal X" \\( -name "*.swift" -or -name "*.pbxproj" \\) -type f -exec sed -i '' 's/com.typefully.Minimal-Twitter/com.typefully.minimal-twitter/g' {} +`;
 const SAFARI_VERSION_FILE = "./safari-version.json";
-const SAFARI_PROJECT_FILE = "./bundle/safari/More Minimal Twitter/More Minimal Twitter.xcodeproj/project.pbxproj";
+const SAFARI_PROJECT_FILE = "./bundle/safari/More Minimal X/More Minimal X.xcodeproj/project.pbxproj";
 
 const applySafariProjectVersioning = async () => {
   const content = await readFile(SAFARI_VERSION_FILE, "utf8");
