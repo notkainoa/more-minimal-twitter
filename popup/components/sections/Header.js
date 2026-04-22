@@ -35,10 +35,7 @@ const Header = () => (
       </h1>
     </div>
     <p className="pt-3 pb-3 text-sm font-medium leading-5 dark:text-x-accent1Dark text-x-accent1">
-      <a href="https://typefully.com/minimal-twitter" target="_blank" rel="noreferrer" className="underline">
-        More Minimal X
-      </a>
-      , without all the BS
+      More Minimal X, without all the BS
     </p>
   </header>
 );
