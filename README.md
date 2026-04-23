@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="80px" alt="More Minimal X App Icon" src=".github/assets/MoreMinimalTwitterIcon.png" />
+  <img width="80px" alt="More Minimal X App Icon" src=".github/assets/MoreMinimalXIcon.png" />
 </p>
 
 <h1 align="center">
