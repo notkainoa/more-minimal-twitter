@@ -52,7 +52,7 @@ let manifest = {
   name: "More Minimal Theme for X / Twitter",
   short_name: "More Minimal X",
   description: "Refine and declutter the 𝕏/Twitter web experience.",
-  version: "6.4.1",
+  version: "0.1",
   icons: {
     16: "images/MoreMinimalX.png",
     32: "images/MoreMinimalX.png",
