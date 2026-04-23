@@ -1,21 +1,21 @@
 <p align="center">
-  <img width="80px" alt="More Minimal X App Icon" src=".github/assets/MinimalTwitterIcon.png" />
+  <img width="80px" alt="More Minimal X App Icon" src=".github/assets/MoreMinimalTwitterIcon.png" />
 </p>
 
 <h1 align="center">
   More Minimal Theme for X / Twitter<br/>
-  by <a href="https://typefully.com/?ref=minimal-twitter">Typefully</a>
+  No <strike><a href="https://github.com/notkainoa/more-minimal-twitter">Typefully</a></strike> BS
 </h1>
 
-Available on [Chrome](https://chrome.google.com/webstore/detail/pobhoodpcipjmedfenaigbeloiidbflp), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/minimaltwitter/), and [Safari](https://apps.apple.com/it/app/minimal-twitter/id1668204600) — or via [manual installation](./MANUAL_INSTALLATION.MD).
+Available on [Chrome](https://chrome.google.com/webstore/detail/pobhoodpcipjmedfenaigbeloiidbflp) — or via [manual installation](./MANUAL_INSTALLATION.MD) for Firefox & Safari.
 
 ![Hero](.github/assets/hero.png)
 
-**More Minimal Theme for X / Twitter** is a browser extension originally made by [Thomas Wang](https://thomas.wang), and now developed by the [Typefully](https://typefully.com/?ref=minimal-twitter) team. To contribute / see development instructions, go to [CONTRIBUTING](./.github/CONTRIBUTING.md).
+**More Minimal Theme for X / Twitter** is a browser extension originally made by [Thomas Wang](https://www.linkedin.com/in/xinganwang/), developed further by the [Typefully](https://typefully.com/?ref=minimal-twitter) team, and now forked + updated by [Kainoa Newton](https://github.com/notkainoa). To contribute / see development instructions, go to [CONTRIBUTING](./.github/CONTRIBUTING.md).
 
 ## Description
 
-Refine and clean up the Twitter interface, and customize your experience:
+Refine and clean up the X/Twitter interface, and customize your experience:
 
 - Default to the "Following" timeline
 - Hide the sticky Timeline header
@@ -32,10 +32,6 @@ Refine and clean up the Twitter interface, and customize your experience:
 - Hide Grok AI elements
 - And more...
 
-## By the makers of Typefully
+## No typefully marketing/features
 
-We also make [Typefully](https://typefully.com/?ref=minimal-twitter), which helps you craft better tweets &amp; threads, and grow faster on Twitter.
-
-<a href="https://typefully.com/?ref=minimal-twitter">
-  <img width="160px" alt="Typefully" src=".github/assets/typefully-logotype.png" />
-</a>
+The biggest thing changed from [Typefully's version](https://github.com/typefully/minimal-twitter) is the removal of any marketing, features, or advertising for Typefully
