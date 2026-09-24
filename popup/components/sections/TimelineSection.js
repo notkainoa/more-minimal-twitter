@@ -4,13 +4,22 @@ import {
   KeyStickyHeader,
 } from "../../../storage-keys";
 import useMounted from "../../utilities/hooks/useMounted";
+import useStorageKeyState from "../../utilities/useStorageKeyState";
 import TimelineWidthSlider from "../controls/TimelineWidthSlider";
 import VanityCheckboxes from "../controls/VanityCheckboxes";
 import ControlsWrapper from "../ui/ControlsWrapper";
 import SectionLabel from "../ui/SectionLabel";
 import Separator from "../ui/Separator";
 import SwitchControl from "../ui/SwitchControl";
-import { LocalStorageCheckboxControl } from "../ui/checkboxes";
+import { CheckboxControl } from "../ui/checkboxes";
+
+// Checked = shown, unchecked = hidden. Both keys store "on" = hidden and
+// "off" = shown, so the boolean state is inverted here.
+const ShowCheckboxControl = ({ label, storageKey }) => {
+  const [hidden, setHidden] = useStorageKeyState(storageKey);
+
+  return <CheckboxControl id={storageKey} label={label} checked={!hidden} onCheckedChange={(checked) => setHidden(!checked)} />;
+};
 
 const TimelineSection = () => {
   const mounted = useMounted();
@@ -24,8 +33,8 @@ const TimelineSection = () => {
           <Separator />
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
           <VanityCheckboxes />
-          <LocalStorageCheckboxControl label={`Hide Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
-          <SwitchControl label="Hide Post Composer" storageKey={KeyHideComposer} />
+          <ShowCheckboxControl label={`Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} />
+          <ShowCheckboxControl label="Post Composer" storageKey={KeyHideComposer} />
         </ControlsWrapper>
       ) : (
         <ControlsWrapper className="animate-pulse h-[115.5px]" />
