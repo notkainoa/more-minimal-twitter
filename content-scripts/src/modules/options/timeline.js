@@ -199,8 +199,7 @@ export const changeTimelineTabs = (removeTimelineTabs) => {
       addStyles(
         "removeTimelineTabs",
         `
-        ${selectors.timelineTabs},
-        ${selectors.manageTimelinesButton} {
+        ${selectors.timelineTabs} {
           display: none;
         }
         `
