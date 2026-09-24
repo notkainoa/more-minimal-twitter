@@ -1,6 +1,5 @@
 import {
   KeyHideComposer,
-  KeyHideViewCount,
   KeyRemoveTimelineTabs,
   KeyStickyHeader,
   KeyTrendsHomeTimeline,
@@ -27,11 +26,8 @@ const TimelineSection = () => {
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
           <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
           <SwitchControl label="Hide Post Composer" storageKey={KeyHideComposer} />
-          <Separator />
-          <SectionLabel>Remove Distracting Elements</SectionLabel>
           <VanityCheckboxes />
-          <LocalStorageCheckboxControl label="View Count from Tweets" storageKey={KeyHideViewCount} crossedIcon />
-          <LocalStorageCheckboxControl label={`Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
+          <LocalStorageCheckboxControl label={`Hide Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
         </ControlsWrapper>
       ) : (
         <ControlsWrapper className="animate-pulse h-[115.5px]" />
