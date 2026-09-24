@@ -35,6 +35,8 @@ export const changeNotificationsButton = (state) => changeSidebarSetting("notifi
 export const changeMessagesButton = (state) => changeSidebarSetting("messages", state);
 export const changeBookmarksButton = (state) => changeSidebarSetting("bookmarks", state);
 export const changeCreatorStudioButton = (state) => changeSidebarSetting("creatorStudio", state);
+export const changeJobsButton = (state) => changeSidebarSetting("jobs", state);
+export const changeArticlesButton = (state) => changeSidebarSetting("articles", state);
 export const changeMoneyButton = (state) => changeSidebarSetting("money", state);
 export const changeVerifiedOrgsButton = (state) => changeSidebarSetting("verifiedOrgs", state);
 export const changeProfileButton = (state) => changeSidebarSetting("profile", state);

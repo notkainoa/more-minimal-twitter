@@ -6,6 +6,7 @@
  */
 
 import {
+  KeyArticlesButton,
   KeyBookmarksButton,
   KeyCommunitiesButton,
   KeyCreatorStudioButton,
@@ -19,6 +20,7 @@ import {
   KeyHideViewCount,
   KeyHomeButton,
   KeyInterFont,
+  KeyJobsButton,
   KeyLikeCount,
   KeyListsButton,
   KeyMessagesButton,
@@ -49,12 +51,14 @@ import { changeFollowingAndFollowersCounts, changeLikeCount, changeReplyCount, c
 import changeHideViewCounts from "../options/hideViewCount";
 import { changeHideSearchBar, changeInterFont, changeTitleNotifications, changeTransparentSearchBar, changeTweetButton, changeTweetButtonPosition } from "../options/interface";
 import {
+  changeArticlesButton,
   changeBookmarksButton,
   changeCommunitiesButton,
   changeCreatorStudioButton,
   changeExploreButton,
   changeGrokButton,
   changeHomeButton,
+  changeJobsButton,
   changeListsButton,
   changeMessagesButton,
   changeMoneyButton,
@@ -119,6 +123,8 @@ export const staticFeatures = {
     changeMessagesButton(data[KeyMessagesButton]);
     changeBookmarksButton(data[KeyBookmarksButton]);
     changeCreatorStudioButton(data[KeyCreatorStudioButton]);
+    changeJobsButton(data[KeyJobsButton]);
+    changeArticlesButton(data[KeyArticlesButton]);
     changeMoneyButton(data[KeyMoneyButton]);
     changeCommunitiesButton(data[KeyCommunitiesButton]);
     changeTopicsButton(data[KeyTopicsButton]);
