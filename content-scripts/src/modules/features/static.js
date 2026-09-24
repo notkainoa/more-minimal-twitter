@@ -27,10 +27,8 @@ import {
   KeyNavigationCenter,
   KeyNotificationsButton,
   KeyProfileButton,
-  KeyRemovePromotedPosts,
   KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
-  KeyRemoveTopicsToFollow,
   KeyRemoveTweetBorders,
   KeyReplyCount,
   KeyRetweetCount,
@@ -94,8 +92,9 @@ export const staticFeatures = {
     changeStickyHeader(data[KeyStickyHeader]);
     changeHideViewCounts(data[KeyHideViewCount]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
-    changePromotedPosts(data[KeyRemovePromotedPosts]);
-    changeTopicsToFollow(data[KeyRemoveTopicsToFollow]);
+    // Promoted posts and Topics-to-Follow are always hidden (no user toggle)
+    changePromotedPosts("on");
+    changeTopicsToFollow("on");
     changeTimelineTabs(data[KeyRemoveTimelineTabs]);
     changeFollowingAndFollowersCounts(data[KeyFollowCount]);
     changeReplyCount(data[KeyReplyCount]);

@@ -32,8 +32,6 @@ export const KeyFollowCount = "followCount";
 export const KeyTweetButton = "tweetButton";
 export const KeySearchBar = "searchBar";
 export const KeyTransparentSearch = "transparentSearch";
-export const KeyRemovePromotedPosts = "removePromotedPosts";
-export const KeyRemoveTopicsToFollow = "removeTopicsToFollow";
 export const KeyInterFont = "interFont";
 export const KeyTitleNotifications = "titleNotifications";
 export const KeyCustomCss = "customCss";
@@ -53,8 +51,6 @@ export const allSettingsKeys = [
   KeyStickyHeader,
   KeyHideViewCount,
   KeyTrendsHomeTimeline,
-  KeyRemovePromotedPosts,
-  KeyRemoveTopicsToFollow,
   KeyRemoveTimelineTabs,
   KeyFollowCount,
   KeyReplyCount,
@@ -112,8 +108,6 @@ export const defaultPreferences = {
   [KeyStickyHeader]: "on",
   [KeyHideViewCount]: "off",
   [KeyTrendsHomeTimeline]: "off",
-  [KeyRemovePromotedPosts]: "on",
-  [KeyRemoveTopicsToFollow]: "on",
   [KeyRemoveTimelineTabs]: "off",
   [KeyFollowCount]: "on",
   [KeyReplyCount]: "on",
