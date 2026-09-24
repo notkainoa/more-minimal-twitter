@@ -2,16 +2,15 @@ import * as TogglePrimitive from "@radix-ui/react-toggle";
 import { styled } from "@stitches/react";
 import startCase from "lodash.startcase";
 import {
-  KeyArticlesButton,
   KeyBookmarksButton,
   KeyCommunitiesButton,
   KeyCreatorStudioButton,
   KeyExploreButton,
   KeyGrokButton,
   KeyHomeButton,
-  KeyJobsButton,
   KeyListsButton,
   KeyMessagesButton,
+  KeyMoneyButton,
   KeyNavigationButtonsLabels,
   KeyNavigationCenter,
   KeyNotificationsButton,
@@ -98,8 +97,8 @@ const Messages = () => (
   </IconButton>
 );
 
-const Bookmarks = () => (
-  <IconButton storageKey={KeyBookmarksButton} label="Bookmarks">
+const History = () => (
+  <IconButton storageKey={KeyBookmarksButton} label="History">
     <path
       className="fill-current"
       d="M4 4.5A2.5 2.5 0 016.5 2h11A2.5 2.5 0 0120 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
@@ -116,22 +115,13 @@ const CreatorStudio = () => (
   </IconButton>
 );
 
-const Articles = () => (
-  <IconButton storageKey={KeyArticlesButton} label="Articles">
-    <path
-      className="fill-current"
-      d="M7.164 2c-.53 0-1.039.21-1.414.586L2.586 5.75C2.21 6.125 2 6.634 2 7.164V21c0 .552.448 1 1 1h5.25c.552 0 1-.448 1-1s-.448-1-1-1H4V7.164L7.164 4h9.586v3.25c0 .552.448 1 1 1s1-.448 1-1V3c0-.552-.448-1-1-1H7.164z"
-    ></path>
-    <path
-      className="fill-current"
-      d="M7.75 6.25c-.552 0-1 .448-1 1s.448 1 1 1h6.5c.552 0 1-.448 1-1s-.448-1-1-1h-6.5zm-2.5 4.5c0-.552.448-1 1-1h6.5c.552 0 1 .448 1 1s-.448 1-1 1h-6.5c-.552 0-1-.448-1-1z"
-    ></path>
+const Money = () => (
+  <IconButton storageKey={KeyMoneyButton} label="Money">
     <path
       className="fill-current"
       clipRule="evenodd"
-      d="M18.75 9.086l4.414 4.414-8.5 8.5H10.25v-4.414l8.5-8.5zm1.586 4.414l-1.586-1.586L17.664 13l1.586 1.586 1.086-1.086zm-8.086 4.914l4-4L17.836 16l-4 4H12.25v-1.586z"
-      fillRule="evenodd"
-    ></path>
+      d="M16.161 3.55h4.117l-1.924 6.416c1.283 1.091 2.098 2.717 2.098 4.534 0 3.286-2.664 5.95-5.95 5.95h-.22l-.5 2.5h-6.44l.5-2.5H3.227l2.033-6.781C4.204 12.595 3.552 11.124 3.552 9.5c0-3.286 2.664-5.95 5.95-5.95h.22l.5-2.5h6.44zm-4.88 1.9H9.502c-2.237 0-4.05 1.813-4.05 4.05s1.813 4.05 4.05 4.05h5c.525 0 .95.425.95.95s-.425.95-.95.95H6.709l-.93 3.1h4.382l-.5 2.5h2.562l.5-2.5h1.779c2.237 0 4.05-1.813 4.05-4.05s-1.813-4.05-4.05-4.05h-5c-.525 0-.95-.425-.95-.95 0-.525.425-.95.95-.95h7.293l.93-3.1h-3.882l.5-2.5H11.78z"
+    />
   </IconButton>
 );
 
@@ -195,34 +185,24 @@ const Profile = () => (
   </IconButton>
 );
 
-const Jobs = () => (
-  <IconButton storageKey={KeyJobsButton} label="Jobs">
-    <path
-      className="fill-current"
-      d="M19.5 6H17V4.5C17 3.12 15.88 2 14.5 2h-5C8.12 2 7 3.12 7 4.5V6H4.5C3.12 6 2 7.12 2 8.5v10C2 19.88 3.12 21 4.5 21h15c1.38 0 2.5-1.12 2.5-2.5v-10C22 7.12 20.88 6 19.5 6zM9 4.5c0-.28.23-.5.5-.5h5c.28 0 .5.22.5.5V6H9V4.5zm11 14c0 .28-.22.5-.5.5h-15c-.27 0-.5-.22-.5-.5v-3.04c.59.35 1.27.54 2 .54h5v1h2v-1h5c.73 0 1.41-.19 2-.54v3.04zm0-6.49c0 1.1-.9 1.99-2 1.99h-5v-1h-2v1H6c-1.1 0-2-.9-2-2V8.5c0-.28.23-.5.5-.5h15c.28 0 .5.22.5.5v3.51z"
-    />
-  </IconButton>
-);
-
 const NavigationSection = () => {
   return (
     <section className="flex flex-col gap-y-2">
       <SectionLabel htmlFor="user-control-navigation">Left Navigation</SectionLabel>
       <div id="user-control-navigation">
         <form className="p-3 pb-4 dark:bg-x-bgTwoDark bg-x-bgTwo rounded-2xl">
-          <div className="grid grid-cols-5 pb-4 gap-y-2 gap-x-4 mx-auto flex-wrap">
+          <div className="grid grid-cols-4 pb-4 gap-y-2 gap-x-4 mx-auto flex-wrap">
             <Home />
             <Explore />
             <Notifications />
             <Messages />
             <Grok />
-            <Bookmarks />
-            <CreatorStudio />
             <XPremium />
+            <Money />
+            <History />
+            <CreatorStudio />
             <Lists />
-            <Jobs />
             <Communities />
-            <Articles />
             <Topics />
             <VerifiedOrgs />
             <Profile />

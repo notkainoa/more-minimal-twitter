@@ -16,8 +16,7 @@ export const KeyNotificationsButton = "notificationsButton";
 export const KeyMessagesButton = "messagesButton";
 export const KeyBookmarksButton = "bookmarksButton";
 export const KeyCreatorStudioButton = "creatorStudioButton";
-export const KeyJobsButton = "jobsButton";
-export const KeyArticlesButton = "articles";
+export const KeyMoneyButton = "moneyButton";
 export const KeyProfileButton = "profileButton";
 export const KeyNavigationButtonsLabels = "navigationButtonsLabels";
 export const KeyNavigationCenter = "navigationCenter";
@@ -81,9 +80,8 @@ export const allSettingsKeys = [
   KeyXPremiumButton,
   KeyListsButton,
   KeyBookmarksButton,
-  KeyJobsButton,
+  KeyMoneyButton,
   KeyCommunitiesButton,
-  KeyArticlesButton,
   KeyTopicsButton,
   KeyVerifiedOrgsButton,
   KeyProfileButton,
@@ -137,9 +135,8 @@ export const defaultPreferences = {
   [KeyXPremiumButton]: "off",
   [KeyListsButton]: "on",
   [KeyBookmarksButton]: "on",
-  [KeyJobsButton]: "off",
+  [KeyMoneyButton]: "on",
   [KeyCommunitiesButton]: "on",
-  [KeyArticlesButton]: "off",
   [KeyTopicsButton]: "off",
   [KeyVerifiedOrgsButton]: "off",
   [KeyProfileButton]: "on",
