@@ -5,7 +5,6 @@ export const KeyTopicsButton = "topicsButton";
 export const KeyXPremiumButton = "xPremiumButton";
 export const KeyVerifiedOrgsButton = "verifiedOrgsButton";
 export const KeyGrokButton = "grokButton";
-export const KeyFollowingTimeline = "followingTimeline";
 export const KeyTrendsHomeTimeline = "trendsHomeTimeline";
 export const KeyRemoveTimelineTabs = "removeTimelineTabs";
 export const KeyTimelineWidth = "timelineWidth";
@@ -35,7 +34,6 @@ export const KeySearchBar = "searchBar";
 export const KeyTransparentSearch = "transparentSearch";
 export const KeyRemovePromotedPosts = "removePromotedPosts";
 export const KeyRemoveTopicsToFollow = "removeTopicsToFollow";
-export const KeyRecentMedia = "recentMedia";
 export const KeyInterFont = "interFont";
 export const KeyTitleNotifications = "titleNotifications";
 export const KeyCustomCss = "customCss";
@@ -53,9 +51,7 @@ export const allSettingsKeys = [
   KeyRemoveTimelineBorders,
   KeyRemoveTweetBorders,
   KeyStickyHeader,
-  KeyFollowingTimeline,
   KeyHideViewCount,
-  KeyRecentMedia,
   KeyTrendsHomeTimeline,
   KeyRemovePromotedPosts,
   KeyRemoveTopicsToFollow,
@@ -114,9 +110,7 @@ export const defaultPreferences = {
   [KeyRemoveTimelineBorders]: "off",
   [KeyRemoveTweetBorders]: "off",
   [KeyStickyHeader]: "on",
-  [KeyFollowingTimeline]: "off",
   [KeyHideViewCount]: "off",
-  [KeyRecentMedia]: "off",
   [KeyTrendsHomeTimeline]: "off",
   [KeyRemovePromotedPosts]: "on",
   [KeyRemoveTopicsToFollow]: "on",

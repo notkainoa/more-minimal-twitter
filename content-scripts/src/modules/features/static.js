@@ -13,7 +13,6 @@ import {
   KeyCustomCss,
   KeyExploreButton,
   KeyFollowCount,
-  KeyFollowingTimeline,
   KeyGrokButton,
   KeyHideGrokDrawer,
   KeyHideMessagesDrawer,
@@ -28,7 +27,6 @@ import {
   KeyNavigationCenter,
   KeyNotificationsButton,
   KeyProfileButton,
-  KeyRecentMedia,
   KeyRemovePromotedPosts,
   KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
@@ -78,9 +76,7 @@ import {
   hideMessagesDrawer,
 } from "../options/navigation";
 import {
-  changeFollowingTimeline,
   changePromotedPosts,
-  changeRecentMedia,
   changeStickyHeader,
   changeTimelineBorders,
   changeTimelineTabs,
@@ -96,9 +92,7 @@ export const staticFeatures = {
     changeTimelineBorders(data[KeyRemoveTimelineBorders]);
     changeTweetBorders(data[KeyRemoveTweetBorders]);
     changeStickyHeader(data[KeyStickyHeader]);
-    changeFollowingTimeline(data[KeyFollowingTimeline]);
     changeHideViewCounts(data[KeyHideViewCount]);
-    changeRecentMedia(data[KeyRecentMedia]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
     changePromotedPosts(data[KeyRemovePromotedPosts]);
     changeTopicsToFollow(data[KeyRemoveTopicsToFollow]);

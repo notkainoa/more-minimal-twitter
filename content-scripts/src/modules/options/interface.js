@@ -286,9 +286,6 @@ export const changeHideSearchBar = (searchBar) => {
           ${selectors.rightSidebar} section[aria-labelledby^="accessible-list-"] {
             top: 12px !important;
           }
-          .mt-recentMedia-photoGrid {
-            top: 12px !important;
-          }
         }`
       );
       break;
@@ -300,9 +297,6 @@ export const changeHideSearchBar = (searchBar) => {
         `@media only screen and (min-width: 1265px) {
           ${selectors.rightSidebar} section[aria-labelledby^="accessible-list-"] {
             top: unset;
-          }
-          .mt-recentMedia-photoGrid {
-            top: unset !important;
           }
         }`
       );

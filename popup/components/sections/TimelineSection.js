@@ -1,7 +1,5 @@
 import {
-  KeyFollowingTimeline,
   KeyHideViewCount,
-  KeyRecentMedia,
   KeyRemovePromotedPosts,
   KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
@@ -31,7 +29,6 @@ const TimelineSection = () => {
           <Separator />
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
           <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
-          <SwitchControl label="Recent Media on Profiles" storageKey={KeyRecentMedia} />
           <Separator />
           <SectionLabel>Remove Distracting Elements</SectionLabel>
           <VanityCheckboxes />
@@ -41,8 +38,6 @@ const TimelineSection = () => {
           <LocalStorageCheckboxControl label={`Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
           <LocalStorageCheckboxControl label="Timeline Borders" storageKey={KeyRemoveTimelineBorders} crossedIcon />
           <LocalStorageCheckboxControl label="Tweet Borders" storageKey={KeyRemoveTweetBorders} crossedIcon />
-          <Separator />
-          <LocalStorageCheckboxControl label={`Always use "Following" Tab`} storageKey={KeyFollowingTimeline} />
         </ControlsWrapper>
       ) : (
         <ControlsWrapper className="animate-pulse h-[115.5px]" />
