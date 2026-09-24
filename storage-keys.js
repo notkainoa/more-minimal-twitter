@@ -137,7 +137,7 @@ export const defaultPreferences = {
   [KeyGrokButton]: "on",
   [KeyCreatorStudioButton]: "on",
   [KeyXPremiumButton]: "off",
-  [KeyListsButton]: "on",
+  [KeyListsButton]: "off",
   [KeyBookmarksButton]: "on",
   [KeyJobsButton]: "off",
   [KeyMoneyButton]: "on",
