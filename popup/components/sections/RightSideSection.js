@@ -30,8 +30,8 @@ const RightSideSection = () => (
                 ]}
               />
             </div>
-            <SwitchControl label="Hide Grok Drawer Button" storageKey={KeyHideGrokDrawer} />
-            <SwitchControl label="Hide DMs Drawer Button" storageKey={KeyHideMessagesDrawer} />
+            <SwitchControl label="Hide Grok Drawer" storageKey={KeyHideGrokDrawer} />
+            <SwitchControl label="Hide DMs Drawer" storageKey={KeyHideMessagesDrawer} />
           </div>
         </div>
       </form>

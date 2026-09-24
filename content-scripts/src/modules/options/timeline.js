@@ -172,7 +172,7 @@ export const changeTimelineTabs = (removeTimelineTabs) => {
 };
 
 export const changeHideComposer = (hideComposer) => {
-  if (window.location.pathname.includes("compose/tweet") || !window.location.pathname.includes("/home") || !window.location.pathname === "/") {
+  if (window.location.pathname.includes("compose/tweet") || (window.location.pathname !== "/" && !window.location.pathname.includes("/home"))) {
     removeStyles("hideComposer");
     return;
   }

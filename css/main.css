@@ -28,7 +28,7 @@ a[href*="quick_promote_web"] {
   [data-testid="primaryColumn"]
     > div
     > div:last-child
-    div:not([data-testid="dm-message-list-container"] *) {
+    div:not([data-testid="dm-message-list-container"]):not([data-testid="dm-message-list-container"] *) {
     max-width: unset;
   }
 

@@ -1,6 +1,5 @@
 import * as TogglePrimitive from "@radix-ui/react-toggle";
 import { styled } from "@stitches/react";
-import startCase from "lodash.startcase";
 import {
   KeyArticlesButton,
   KeyBookmarksButton,
@@ -43,8 +42,8 @@ const IconButton = ({ storageKey, label, viewBox = "0 0 24 24", children }) => {
       <StyledToggle
         onPressedChange={setPressed}
         pressed={pressed}
-        title={`Toggle ${startCase(storageKey)}`}
-        aria-label={`Toggle ${startCase(storageKey)}`}
+        title={`Toggle ${label}`}
+        aria-label={`Toggle ${label}`}
         className="dark:bg-x-bgTwoDark bg-x-bgTwo p-3 w-fit rounded-full border-[3px] border-x-premium dark:text-white text-black"
       >
         <svg width={25} height={25} aria-hidden="true" viewBox={viewBox}>
@@ -122,6 +121,7 @@ const Money = () => (
     <path
       className="fill-current"
       clipRule="evenodd"
+      fillRule="evenodd"
       d="M16.161 3.55h4.117l-1.924 6.416c1.283 1.091 2.098 2.717 2.098 4.534 0 3.286-2.664 5.95-5.95 5.95h-.22l-.5 2.5h-6.44l.5-2.5H3.227l2.033-6.781C4.204 12.595 3.552 11.124 3.552 9.5c0-3.286 2.664-5.95 5.95-5.95h.22l.5-2.5h6.44zm-4.88 1.9H9.502c-2.237 0-4.05 1.813-4.05 4.05s1.813 4.05 4.05 4.05h5c.525 0 .95.425.95.95s-.425.95-.95.95H6.709l-.93 3.1h4.382l-.5 2.5h2.562l.5-2.5h1.779c2.237 0 4.05-1.813 4.05-4.05s-1.813-4.05-4.05-4.05h-5c-.525 0-.95-.425-.95-.95 0-.525.425-.95.95-.95h7.293l.93-3.1h-3.882l.5-2.5H11.78z"
     />
   </IconButton>
