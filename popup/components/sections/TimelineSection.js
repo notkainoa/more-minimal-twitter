@@ -2,7 +2,6 @@ import {
   KeyHideComposer,
   KeyRemoveTimelineTabs,
   KeyStickyHeader,
-  KeyTrendsHomeTimeline,
 } from "../../../storage-keys";
 import useMounted from "../../utilities/hooks/useMounted";
 import TimelineWidthSlider from "../controls/TimelineWidthSlider";
@@ -24,7 +23,6 @@ const TimelineSection = () => {
           <TimelineWidthSlider />
           <Separator />
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
-          <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
           <VanityCheckboxes />
           <LocalStorageCheckboxControl label={`Hide Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
           <SwitchControl label="Hide Post Composer" storageKey={KeyHideComposer} />
