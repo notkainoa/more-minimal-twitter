@@ -4,9 +4,13 @@ const selectors = {};
 selectors.mainWrapper = `main[role="main"]`;
 selectors.mainColumn = `[data-testid="primaryColumn"]`;
 selectors.topHeader = `${selectors.mainColumn} > div > div:nth-of-type(1)`;
-// Entire timeline tab header (For you / Following / lists + scroll arrows + Manage timelines button).
-// The :has() filter excludes the composer toolbar, which reuses the same ScrollSnap testid but has no real tabs.
-selectors.timelineTabs = `${selectors.mainColumn} > div > div:has(div[data-testid="ScrollSnap-List"][role="tablist"]:has(div[role="tab"]))`;
+// Entire timeline tab header (tabs + scroll arrows + Manage timelines button + the bar itself).
+// Kept as separate single-level :has() selectors (never nested, never comma-joined) so one
+// failing selector can't invalidate the others. The tab conditions exclude the composer
+// toolbar, which reuses the same ScrollSnap testids but has no real tabs.
+selectors.timelineTabs = `${selectors.mainColumn} > div > div:has(> div > div > div > div > nav div[data-testid="ScrollSnap-List"]):has(div[role="tab"])`;
+selectors.timelineTabsList = `${selectors.mainColumn} div[data-testid="ScrollSnap-List"][role="tablist"]:has(div[role="tab"])`;
+selectors.manageTimelinesButton = `${selectors.mainColumn} button:has(path[d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"])`;
 selectors.leftSidebar = `header[role="banner"]`;
 selectors.leftSidebarLinks = `${selectors.leftSidebar} nav[role="navigation"]`;
 selectors.leftSidebarUnreadBadge = `${selectors.leftSidebarLinks} a svg + div[aria-label]:only-of-type`;

@@ -202,6 +202,12 @@ export const changeTimelineTabs = (removeTimelineTabs) => {
         ${selectors.timelineTabs} {
           display: none;
         }
+        ${selectors.timelineTabsList} {
+          display: none;
+        }
+        ${selectors.manageTimelinesButton} {
+          display: none;
+        }
         `
       );
       break;
