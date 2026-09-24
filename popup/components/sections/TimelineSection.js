@@ -25,9 +25,9 @@ const TimelineSection = () => {
           <Separator />
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
           <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
-          <SwitchControl label="Hide Post Composer" storageKey={KeyHideComposer} />
           <VanityCheckboxes />
           <LocalStorageCheckboxControl label={`Hide Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
+          <SwitchControl label="Hide Post Composer" storageKey={KeyHideComposer} />
         </ControlsWrapper>
       ) : (
         <ControlsWrapper className="animate-pulse h-[115.5px]" />
