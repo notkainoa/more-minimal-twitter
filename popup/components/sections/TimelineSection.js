@@ -30,13 +30,6 @@ const TimelineSection = () => {
       ) : (
         <ControlsWrapper className="animate-pulse h-[115.5px]" />
       )}
-      <p className="pt-1 pb-2 text-xs text-center font-medium leading-5 dark:text-x-accentDark text-x-accent1">
-        View more 𝕏 display settings{" "}
-        <a href="https://twitter.com/i/display" target="_blank" rel="noreferrer" className="text-x-premium hover:underline">
-          here
-        </a>
-        .
-      </p>
     </section>
   );
 };

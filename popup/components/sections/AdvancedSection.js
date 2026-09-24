@@ -45,6 +45,13 @@ const AdvancedSection = () => {
 
   return (
     <section className="flex flex-col gap-y-2">
+      <p className="text-sm font-bold dark:text-x-accent1Dark text-x-accent1">
+        View more 𝕏 display settings{" "}
+        <a href="https://twitter.com/i/display" target="_blank" rel="noreferrer" className="text-x-premium">
+          here
+        </a>
+        .
+      </p>
       <SectionLabel htmlFor="user-control-advanced">
         <span>Advanced</span>
         {!showEditor ? (
