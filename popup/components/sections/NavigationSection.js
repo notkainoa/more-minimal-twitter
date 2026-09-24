@@ -204,7 +204,9 @@ const NavigationSection = () => {
             <Lists />
             <Communities />
             <Topics />
-            <VerifiedOrgs />
+            <div className="col-start-2">
+              <VerifiedOrgs />
+            </div>
             <Profile />
           </div>
           <div className="flex flex-col gap-y-4">
