@@ -1,7 +1,6 @@
 import {
   KeyHideViewCount,
   KeyRemoveTimelineBorders,
-  KeyRemoveTimelineTabs,
   KeyRemoveTweetBorders,
   KeyStickyHeader,
   KeyTrendsHomeTimeline,
@@ -31,7 +30,6 @@ const TimelineSection = () => {
           <SectionLabel>Remove Distracting Elements</SectionLabel>
           <VanityCheckboxes />
           <LocalStorageCheckboxControl label="View Count from Tweets" storageKey={KeyHideViewCount} crossedIcon />
-          <LocalStorageCheckboxControl label={`Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
           <LocalStorageCheckboxControl label="Timeline Borders" storageKey={KeyRemoveTimelineBorders} crossedIcon />
           <LocalStorageCheckboxControl label="Tweet Borders" storageKey={KeyRemoveTweetBorders} crossedIcon />
         </ControlsWrapper>

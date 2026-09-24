@@ -6,7 +6,6 @@ export const KeyXPremiumButton = "xPremiumButton";
 export const KeyVerifiedOrgsButton = "verifiedOrgsButton";
 export const KeyGrokButton = "grokButton";
 export const KeyTrendsHomeTimeline = "trendsHomeTimeline";
-export const KeyRemoveTimelineTabs = "removeTimelineTabs";
 export const KeyTimelineWidth = "timelineWidth";
 export const KeyRemoveTimelineBorders = "timelineBorders";
 export const KeyRemoveTweetBorders = "tweetBorders";
@@ -51,7 +50,6 @@ export const allSettingsKeys = [
   KeyStickyHeader,
   KeyHideViewCount,
   KeyTrendsHomeTimeline,
-  KeyRemoveTimelineTabs,
   KeyFollowCount,
   KeyReplyCount,
   KeyRetweetCount,
@@ -108,7 +106,6 @@ export const defaultPreferences = {
   [KeyStickyHeader]: "on",
   [KeyHideViewCount]: "off",
   [KeyTrendsHomeTimeline]: "off",
-  [KeyRemoveTimelineTabs]: "off",
   [KeyFollowCount]: "on",
   [KeyReplyCount]: "on",
   [KeyRetweetCount]: "on",
