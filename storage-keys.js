@@ -8,8 +8,6 @@ export const KeyGrokButton = "grokButton";
 export const KeyTrendsHomeTimeline = "trendsHomeTimeline";
 export const KeyRemoveTimelineTabs = "removeTimelineTabs";
 export const KeyTimelineWidth = "timelineWidth";
-export const KeyRemoveTimelineBorders = "timelineBorders";
-export const KeyRemoveTweetBorders = "tweetBorders";
 export const KeyStickyHeader = "stickyHeader";
 export const KeySidebarLogo = "sidebarLogo";
 export const KeyHomeButton = "homeButton";
@@ -47,8 +45,6 @@ export const allSettingsKeys = [
 
   // Timeline Features
   KeyTimelineWidth,
-  KeyRemoveTimelineBorders,
-  KeyRemoveTweetBorders,
   KeyStickyHeader,
   KeyHideViewCount,
   KeyTrendsHomeTimeline,
@@ -105,8 +101,6 @@ export const defaultPreferences = {
 
   // Timeline Features
   [KeyTimelineWidth]: 700,
-  [KeyRemoveTimelineBorders]: "off",
-  [KeyRemoveTweetBorders]: "off",
   [KeyStickyHeader]: "on",
   [KeyHideViewCount]: "off",
   [KeyTrendsHomeTimeline]: "off",

@@ -77,49 +77,6 @@ export const changeTimelineWidth = (timelineWidth) => {
   }
 };
 
-export const changeTimelineBorders = (timelineBorders) => {
-  switch (timelineBorders) {
-    case "off":
-      removeStyles("timelineBorders");
-      break;
-
-    case "on":
-      addStyles(
-        "timelineBorders",
-        `
-        @media only screen and (min-width: 988px) {
-          div${selectors.mainColumn} {
-            border-style: hidden;
-          }
-        }
-        `.trim()
-      );
-      break;
-  }
-};
-
-export const changeTweetBorders = (tweetBorders) => {
-  switch (tweetBorders) {
-    case "off":
-      removeStyles("tweetBorders");
-      break;
-
-    case "on":
-      addStyles(
-        "tweetBorders",
-        `
-        ${selectors.mainWrapper} section > div > div > div > div[role="separator"] {
-          display: none;
-        }
-        ${selectors.mainColumn} > div > div:empty {
-          background: transparent;
-        }
-        `.trim()
-      );
-      break;
-  }
-};
-
 export const changeStickyHeader = (stickyHeader) => {
   switch (stickyHeader) {
     case "on":

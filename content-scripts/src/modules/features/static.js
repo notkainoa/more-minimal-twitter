@@ -28,9 +28,7 @@ import {
   KeyNavigationCenter,
   KeyNotificationsButton,
   KeyProfileButton,
-  KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
-  KeyRemoveTweetBorders,
   KeyReplyCount,
   KeyRetweetCount,
   KeySearchBar,
@@ -78,19 +76,15 @@ import {
   changeHideComposer,
   changePromotedPosts,
   changeStickyHeader,
-  changeTimelineBorders,
   changeTimelineTabs,
   changeTimelineWidth,
   changeTopicsToFollow,
   changeTrendsHomeTimeline,
-  changeTweetBorders,
 } from "../options/timeline";
 
 export const staticFeatures = {
   timeline: (data) => {
     changeTimelineWidth(data[KeyTimelineWidth]);
-    changeTimelineBorders(data[KeyRemoveTimelineBorders]);
-    changeTweetBorders(data[KeyRemoveTweetBorders]);
     changeStickyHeader(data[KeyStickyHeader]);
     changeHideViewCounts(data[KeyHideViewCount]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
