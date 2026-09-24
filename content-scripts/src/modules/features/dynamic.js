@@ -12,6 +12,7 @@ import {
   KeyHideMessagesDrawer,
   KeyHideViewCount,
   KeyListsButton,
+  KeyRemoveTimelineTabs,
   KeyTopicsButton,
   KeyTrendsHomeTimeline,
   KeyXPremiumButton,
@@ -40,7 +41,7 @@ export const dynamicFeatures = {
     changeNavigationButtonsLabels(data[KeyNavigationButtonsLabels]);
   },
   timeline: (data) => {
-    changeTimelineTabs("off");
+    changeTimelineTabs(data[KeyRemoveTimelineTabs]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
   },
   sidebarButtons: async () => {
@@ -58,6 +59,7 @@ export const dynamicFeatures = {
 export const runDynamicFeatures = throttle(async () => {
   const data = await getStorage([
     KeyTrendsHomeTimeline,
+    KeyRemoveTimelineTabs,
     KeyHideGrokDrawer,
     KeyHideMessagesDrawer,
     KeyNavigationButtonsLabels

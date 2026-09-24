@@ -28,6 +28,7 @@ import {
   KeyNotificationsButton,
   KeyProfileButton,
   KeyRemoveTimelineBorders,
+  KeyRemoveTimelineTabs,
   KeyRemoveTweetBorders,
   KeyReplyCount,
   KeyRetweetCount,
@@ -94,8 +95,7 @@ export const staticFeatures = {
     // Promoted posts and Topics-to-Follow are always hidden (no user toggle)
     changePromotedPosts("on");
     changeTopicsToFollow("on");
-    // Timeline tabs are always shown (no user toggle)
-    changeTimelineTabs("off");
+    changeTimelineTabs(data[KeyRemoveTimelineTabs]);
     changeFollowingAndFollowersCounts(data[KeyFollowCount]);
     changeReplyCount(data[KeyReplyCount]);
     changeRetweetCount(data[KeyRetweetCount]);

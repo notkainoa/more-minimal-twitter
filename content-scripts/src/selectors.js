@@ -4,7 +4,10 @@ const selectors = {};
 selectors.mainWrapper = `main[role="main"]`;
 selectors.mainColumn = `[data-testid="primaryColumn"]`;
 selectors.topHeader = `${selectors.mainColumn} > div > div:nth-of-type(1)`;
-selectors.timelineTabs = `${selectors.mainColumn} > div:first-child > div:first-child > div:first-child > div:only-child > nav:only-child`;
+// Timeline tab bar (For you / Following / lists) + the "Manage timelines" (+) button next to it.
+// The :has() filter excludes the composer toolbar, which reuses the same ScrollSnap testid but has no real tabs.
+selectors.timelineTabs = `${selectors.mainColumn} div[data-testid="ScrollSnap-List"][role="tablist"]:has(div[role="tab"])`;
+selectors.manageTimelinesButton = `${selectors.mainColumn} button:has(path[d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"])`;
 selectors.leftSidebar = `header[role="banner"]`;
 selectors.leftSidebarLinks = `${selectors.leftSidebar} nav[role="navigation"]`;
 selectors.leftSidebarUnreadBadge = `${selectors.leftSidebarLinks} a svg + div[aria-label]:only-of-type`;
