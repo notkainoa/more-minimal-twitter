@@ -214,6 +214,35 @@ export const changeTimelineTabs = (removeTimelineTabs) => {
   }
 };
 
+export const changeHideComposer = (hideComposer) => {
+  if (window.location.pathname.includes("compose/tweet") || !window.location.pathname.includes("/home") || !window.location.pathname === "/") {
+    removeStyles("hideComposer");
+    return;
+  }
+
+  switch (hideComposer) {
+    case "off":
+      removeStyles("hideComposer");
+      break;
+
+    case "on":
+      if (stylesExist("hideComposer")) return;
+
+      addStyles(
+        "hideComposer",
+        `
+        ${selectors.composerBox} {
+          display: none;
+        }
+        ${selectors.composerBox} + div:empty {
+          display: none;
+        }
+        `
+      );
+      break;
+  }
+};
+
 export const changeTrendsHomeTimeline = (trendsHomeTimeline) => {
   if (window.location.pathname.includes("compose/tweet") || !window.location.pathname.includes("/home") || !window.location.pathname === "/") {
     removeStyles("trendsHomeTimeline");

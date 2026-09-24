@@ -1,4 +1,5 @@
 import {
+  KeyHideComposer,
   KeyHideViewCount,
   KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
@@ -27,6 +28,7 @@ const TimelineSection = () => {
           <Separator />
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
           <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
+          <SwitchControl label="Hide Post Composer" storageKey={KeyHideComposer} />
           <Separator />
           <SectionLabel>Remove Distracting Elements</SectionLabel>
           <VanityCheckboxes />

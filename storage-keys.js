@@ -38,6 +38,7 @@ export const KeyCustomCss = "customCss";
 export const KeyHideViewCount = "hideViewCount";
 export const KeyHideGrokDrawer = "hideGrokDrawer";
 export const KeyHideMessagesDrawer = "hideMessagesDrawer";
+export const KeyHideComposer = "hideComposer";
 export const KeyTweetButtonPosition = "tweetButtonPosition";
 
 export const allSettingsKeys = [
@@ -52,6 +53,7 @@ export const allSettingsKeys = [
   KeyHideViewCount,
   KeyTrendsHomeTimeline,
   KeyRemoveTimelineTabs,
+  KeyHideComposer,
   KeyFollowCount,
   KeyReplyCount,
   KeyRetweetCount,
@@ -109,6 +111,7 @@ export const defaultPreferences = {
   [KeyHideViewCount]: "off",
   [KeyTrendsHomeTimeline]: "off",
   [KeyRemoveTimelineTabs]: "off",
+  [KeyHideComposer]: "off",
   [KeyFollowCount]: "on",
   [KeyReplyCount]: "on",
   [KeyRetweetCount]: "on",

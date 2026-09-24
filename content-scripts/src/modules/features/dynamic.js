@@ -8,6 +8,7 @@
 
 import {
   KeyCommunitiesButton,
+  KeyHideComposer,
   KeyHideGrokDrawer,
   KeyHideMessagesDrawer,
   KeyHideViewCount,
@@ -20,7 +21,7 @@ import {
 } from "../../../../storage-keys";
 import changeHideViewCounts from "../options/hideViewCount";
 import { addCommunitiesButton, addListsButton, addTopicsButton, addXPremiumButton, hideGrokDrawer, hideMessagesDrawer, changeNavigationButtonsLabels } from "../options/navigation";
-import { changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
+import { changeHideComposer, changeTimelineTabs, changeTrendsHomeTimeline, enableGrokDrawerOnGrokButtonClick } from "../options/timeline";
 import hideRightSidebar from "../utilities/hideRightSidebar";
 import { updateLeftSidebarPositioning } from "../utilities/leftSidebarPosition";
 import { addSmallerSearchBarStyle } from "../utilities/other-styles";
@@ -42,6 +43,7 @@ export const dynamicFeatures = {
   },
   timeline: (data) => {
     changeTimelineTabs(data[KeyRemoveTimelineTabs]);
+    changeHideComposer(data[KeyHideComposer]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
   },
   sidebarButtons: async () => {
@@ -60,6 +62,7 @@ export const runDynamicFeatures = throttle(async () => {
   const data = await getStorage([
     KeyTrendsHomeTimeline,
     KeyRemoveTimelineTabs,
+    KeyHideComposer,
     KeyHideGrokDrawer,
     KeyHideMessagesDrawer,
     KeyNavigationButtonsLabels

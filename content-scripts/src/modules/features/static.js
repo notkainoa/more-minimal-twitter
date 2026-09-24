@@ -14,6 +14,7 @@ import {
   KeyExploreButton,
   KeyFollowCount,
   KeyGrokButton,
+  KeyHideComposer,
   KeyHideGrokDrawer,
   KeyHideMessagesDrawer,
   KeyHideViewCount,
@@ -74,6 +75,7 @@ import {
   hideMessagesDrawer,
 } from "../options/navigation";
 import {
+  changeHideComposer,
   changePromotedPosts,
   changeStickyHeader,
   changeTimelineBorders,
@@ -96,6 +98,7 @@ export const staticFeatures = {
     changePromotedPosts("on");
     changeTopicsToFollow("on");
     changeTimelineTabs(data[KeyRemoveTimelineTabs]);
+    changeHideComposer(data[KeyHideComposer]);
     changeFollowingAndFollowersCounts(data[KeyFollowCount]);
     changeReplyCount(data[KeyReplyCount]);
     changeRetweetCount(data[KeyRetweetCount]);

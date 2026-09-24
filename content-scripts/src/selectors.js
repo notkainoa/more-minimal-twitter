@@ -11,6 +11,10 @@ selectors.topHeader = `${selectors.mainColumn} > div > div:nth-of-type(1)`;
 selectors.timelineTabs = `${selectors.mainColumn} > div > div:has(> div > div > div > div > nav div[data-testid="ScrollSnap-List"]):has(div[role="tab"])`;
 selectors.timelineTabsList = `${selectors.mainColumn} div[data-testid="ScrollSnap-List"][role="tablist"]:has(div[role="tab"])`;
 selectors.manageTimelinesButton = `${selectors.mainColumn} button:has(path[d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"])`;
+// Home timeline post composer ("What's happening?" box). Pinned to the depth-2 block
+// containing the textbox so reply/modal composers (nested deeper, outside primaryColumn)
+// can never match. The + div:empty covers the empty divider right after it.
+selectors.composerBox = `${selectors.mainColumn} > div > div:has(div[data-testid="tweetTextarea_0"])`;
 selectors.leftSidebar = `header[role="banner"]`;
 selectors.leftSidebarLinks = `${selectors.leftSidebar} nav[role="navigation"]`;
 selectors.leftSidebarUnreadBadge = `${selectors.leftSidebarLinks} a svg + div[aria-label]:only-of-type`;
