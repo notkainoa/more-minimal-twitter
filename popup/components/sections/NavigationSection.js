@@ -231,13 +231,13 @@ const NavigationSection = () => {
             <Money />
             <History />
             <CreatorStudio />
+            <Jobs />
+            <Articles />
             <Lists />
             <Communities />
             <Topics />
             <VerifiedOrgs />
             <Profile />
-            <Jobs />
-            <Articles />
           </div>
           <div className="flex flex-col gap-y-4">
             <Separator />
