@@ -1,13 +1,20 @@
-import { KeyHideGrokDrawer, KeyHideMessagesDrawer, KeySearchBar, KeyTransparentSearch, KeyTrendsHomeTimeline, KeyTweetButton, KeyTweetButtonPosition } from "../../../storage-keys";
-import useStorageKeyState from "../../utilities/useStorageKeyState";
+import { useEffect, useState } from "react";
+import { KeyHideGrokDrawer, KeyHideMessagesDrawer, KeySearchBar, KeyTransparentSearch, KeyTrendsHomeTimeline, KeyTweetButton, KeyTweetButtonPosition, defaultPreferences } from "../../../storage-keys";
+import { getStorage } from "../../utilities/chromeStorage";
 import SectionLabel from "../ui/SectionLabel";
 import { SegmentedControl } from "../ui/SegmentedControl";
 import SwitchControl from "../ui/SwitchControl";
 
 const RightSideSection = () => {
-  const [tweetButtonOn, , loaded] = useStorageKeyState(KeyTweetButton);
-  // Assume enabled until storage loads to avoid flashing disabled on open.
-  const positionEnabled = !loaded || tweetButtonOn;
+  // Mirrors the Tweet Button switch (via onChange + initial storage read) so the
+  // position row stays in sync without waiting for a popup remount.
+  const [tweetButtonOn, setTweetButtonOn] = useState(defaultPreferences[KeyTweetButton] === "on");
+
+  useEffect(() => {
+    getStorage(KeyTweetButton).then((storedValue) => {
+      if (storedValue !== undefined) setTweetButtonOn(storedValue === "on");
+    });
+  }, []);
 
   return (
     <section className="flex flex-col gap-y-2">
@@ -19,11 +26,12 @@ const RightSideSection = () => {
               <SwitchControl label="Search Bar" storageKey={KeySearchBar} />
               <SwitchControl label="Transparent Search Bar" storageKey={KeyTransparentSearch} />
               <SwitchControl label="Trends" storageKey={KeyTrendsHomeTimeline} />
-              <SwitchControl label="Tweet Button" storageKey={KeyTweetButton} />
-              <div className={`flex items-center gap-x-4${positionEnabled ? "" : " opacity-40 pointer-events-none"}`} aria-disabled={!positionEnabled}>
+              <SwitchControl label="Tweet Button" storageKey={KeyTweetButton} onChange={setTweetButtonOn} />
+              <div className={`flex items-center gap-x-4${tweetButtonOn ? "" : " opacity-40 pointer-events-none"}`} aria-disabled={!tweetButtonOn}>
                 <span className="text-[15px] font-medium whitespace-nowrap">Tweet Button Position</span>
                 <SegmentedControl
                   storageKey={KeyTweetButtonPosition}
+                  disabled={!tweetButtonOn}
                   segments={[
                     {
                       value: "floating",
