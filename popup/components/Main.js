@@ -2,6 +2,7 @@ import AdvancedSection from "./sections/AdvancedSection";
 import ExtensionStatus from "./sections/ExtensionStatus";
 import InterfaceSection from "./sections/InterfaceSection";
 import NavigationSection from "./sections/NavigationSection";
+import RightSideSection from "./sections/RightSideSection";
 import TimelineSection from "./sections/TimelineSection";
 
 const Main = () => (
@@ -9,6 +10,7 @@ const Main = () => (
     <ExtensionStatus />
     <TimelineSection />
     <NavigationSection />
+    <RightSideSection />
     <InterfaceSection />
     <AdvancedSection />
   </main>

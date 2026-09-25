@@ -1,23 +1,25 @@
 import {
-  KeyFollowingTimeline,
-  KeyHideViewCount,
-  KeyRecentMedia,
-  KeyRemovePromotedPosts,
-  KeyRemoveTimelineBorders,
+  KeyHideComposer,
   KeyRemoveTimelineTabs,
-  KeyRemoveTopicsToFollow,
-  KeyRemoveTweetBorders,
   KeyStickyHeader,
-  KeyTrendsHomeTimeline,
 } from "../../../storage-keys";
 import useMounted from "../../utilities/hooks/useMounted";
+import useStorageKeyState from "../../utilities/useStorageKeyState";
 import TimelineWidthSlider from "../controls/TimelineWidthSlider";
 import VanityCheckboxes from "../controls/VanityCheckboxes";
 import ControlsWrapper from "../ui/ControlsWrapper";
 import SectionLabel from "../ui/SectionLabel";
 import Separator from "../ui/Separator";
 import SwitchControl from "../ui/SwitchControl";
-import { LocalStorageCheckboxControl } from "../ui/checkboxes";
+import { CheckboxControl } from "../ui/checkboxes";
+
+// Checked = shown, unchecked = hidden. Both keys store "on" = hidden and
+// "off" = shown, so the boolean state is inverted here.
+const ShowCheckboxControl = ({ label, storageKey }) => {
+  const [hidden, setHidden] = useStorageKeyState(storageKey);
+
+  return <CheckboxControl id={storageKey} label={label} checked={!hidden} onCheckedChange={(checked) => setHidden(!checked)} />;
+};
 
 const TimelineSection = () => {
   const mounted = useMounted();
@@ -30,30 +32,13 @@ const TimelineSection = () => {
           <TimelineWidthSlider />
           <Separator />
           <SwitchControl label="Sticky Header" storageKey={KeyStickyHeader} />
-          <SwitchControl label="Trends on Home Timeline" storageKey={KeyTrendsHomeTimeline} />
-          <SwitchControl label="Recent Media on Profiles" storageKey={KeyRecentMedia} />
-          <Separator />
-          <SectionLabel>Remove Distracting Elements</SectionLabel>
           <VanityCheckboxes />
-          <LocalStorageCheckboxControl label="View Count from Tweets" storageKey={KeyHideViewCount} crossedIcon />
-          <LocalStorageCheckboxControl label="Promoted Posts" storageKey={KeyRemovePromotedPosts} crossedIcon />
-          <LocalStorageCheckboxControl label="Topics to Follow Suggestions" storageKey={KeyRemoveTopicsToFollow} crossedIcon />
-          <LocalStorageCheckboxControl label={`Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} crossedIcon />
-          <LocalStorageCheckboxControl label="Timeline Borders" storageKey={KeyRemoveTimelineBorders} crossedIcon />
-          <LocalStorageCheckboxControl label="Tweet Borders" storageKey={KeyRemoveTweetBorders} crossedIcon />
-          <Separator />
-          <LocalStorageCheckboxControl label={`Always use "Following" Tab`} storageKey={KeyFollowingTimeline} />
+          <ShowCheckboxControl label={`Timeline Tabs (For you, Following, lists...)`} storageKey={KeyRemoveTimelineTabs} />
+          <ShowCheckboxControl label="Post Composer" storageKey={KeyHideComposer} />
         </ControlsWrapper>
       ) : (
         <ControlsWrapper className="animate-pulse h-[115.5px]" />
       )}
-      <p className="pt-1 pb-2 text-xs text-center font-medium leading-5 dark:text-x-accentDark text-x-accent1">
-        View more 𝕏 display settings{" "}
-        <a href="https://twitter.com/i/display" target="_blank" rel="noreferrer" className="text-x-premium hover:underline">
-          here
-        </a>
-        .
-      </p>
     </section>
   );
 };

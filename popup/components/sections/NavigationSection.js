@@ -1,6 +1,5 @@
 import * as TogglePrimitive from "@radix-ui/react-toggle";
 import { styled } from "@stitches/react";
-import startCase from "lodash.startcase";
 import {
   KeyArticlesButton,
   KeyBookmarksButton,
@@ -8,12 +7,11 @@ import {
   KeyCreatorStudioButton,
   KeyExploreButton,
   KeyGrokButton,
-  KeyHideGrokDrawer,
-  KeyHideMessagesDrawer,
   KeyHomeButton,
   KeyJobsButton,
   KeyListsButton,
   KeyMessagesButton,
+  KeyMoneyButton,
   KeyNavigationButtonsLabels,
   KeyNavigationCenter,
   KeyNotificationsButton,
@@ -36,7 +34,7 @@ const StyledToggle = styled(TogglePrimitive.Root, {
   "&[data-state=off]:hover": { borderColor: "rgba(255, 255, 255, 0.5)" },
 });
 
-const IconButton = ({ storageKey, label, children }) => {
+const IconButton = ({ storageKey, label, viewBox = "0 0 24 24", children }) => {
   const [pressed, setPressed] = useStorageKeyState(storageKey);
 
   return (
@@ -44,11 +42,11 @@ const IconButton = ({ storageKey, label, children }) => {
       <StyledToggle
         onPressedChange={setPressed}
         pressed={pressed}
-        title={`Toggle ${startCase(storageKey)}`}
-        aria-label={`Toggle ${startCase(storageKey)}`}
+        title={`Toggle ${label}`}
+        aria-label={`Toggle ${label}`}
         className="dark:bg-x-bgTwoDark bg-x-bgTwo p-3 w-fit rounded-full border-[3px] border-x-premium dark:text-white text-black"
       >
-        <svg width={25} height={25} aria-hidden="true" viewBox="0 0 24 24">
+        <svg width={25} height={25} aria-hidden="true" viewBox={viewBox}>
           {children}
         </svg>
       </StyledToggle>
@@ -91,17 +89,17 @@ const Notifications = () => (
   </IconButton>
 );
 
-const Messages = () => (
-  <IconButton storageKey={KeyMessagesButton} label="Messages">
+const Chat = () => (
+  <IconButton storageKey={KeyMessagesButton} label="Chat">
     <path
       className="fill-current"
-      d="M1.998 5.5a2.5 2.5 0 012.5-2.5h15a2.5 2.5 0 012.5 2.5v13a2.5 2.5 0 01-2.5 2.5h-15a2.5 2.5 0 01-2.5-2.5v-13zm2.5-.5a.5.5 0 00-.5.5v2.764l8 3.638 8-3.636V5.5a.5.5 0 00-.5-.5h-15zm15.5 5.463l-8 3.636-8-3.638V18.5a.5.5 0 00.5.5h15a.5.5 0 00.5-.5v-8.037z"
+      d="M20.7 11.7c0-4.48-3.844-8.2-8.699-8.2-4.854 0-8.698 3.72-8.698 8.2v.015l-.001.014c-.02.667.09 1.225.25 1.767.083.28.176.545.276.839.098.285.202.595.288.918.177.663.284 1.401.156 2.271-.086.582-.274 1.191-.582 1.855 1.264.375 2.55.053 4.013-.599l.455-.203.437.242c1.07.594 1.917 1.08 3.406 1.08 4.855 0 8.7-3.72 8.7-8.199zm2 0c0 5.683-4.84 10.2-10.699 10.2-1.784 0-2.96-.555-3.95-1.095-1.876.768-4.02 1.2-6.245-.075l-.885-.505.524-.875c.54-.904.77-1.581.848-2.118.078-.526.02-.98-.11-1.463-.066-.25-.15-.502-.247-.788-.095-.277-.204-.59-.301-.92-.199-.674-.36-1.449-.332-2.39C1.322 6.002 6.154 1.5 12.002 1.5c5.859 0 10.7 4.518 10.7 10.2z"
     />
   </IconButton>
 );
 
-const Bookmarks = () => (
-  <IconButton storageKey={KeyBookmarksButton} label="Bookmarks">
+const History = () => (
+  <IconButton storageKey={KeyBookmarksButton} label="History">
     <path
       className="fill-current"
       d="M4 4.5A2.5 2.5 0 016.5 2h11A2.5 2.5 0 0120 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
@@ -114,6 +112,17 @@ const CreatorStudio = () => (
     <path
       className="fill-current"
       d="M5 22H2v-3c0-1.654 1.346-3 3-3s3 1.346 3 3-1.346 3-3 3zm-1-2h1c.551 0 1-.449 1-1s-.449-1-1-1-1 .449-1 1v1zm7.594 1.282l-.336-1.145c-.271-.923-.664-1.807-1.166-2.627-.452-.736-.992-1.421-1.607-2.036-.626-.625-1.322-1.173-2.069-1.627-.821-.499-1.706-.888-2.63-1.157l-1.151-.335L5.312 7h5.192c.613-.636 2.015-2.077 2.758-2.744C15.673 2.09 20.704 2.003 20.918 2l1.025-.013-.013 1.025c-.003.213-.09 5.245-2.256 7.656-.643.715-2.004 2.043-2.671 2.688v5.239l-5.407 2.688h-.002zm.64-4.046c.207.396.393.802.557 1.217l2.21-1.099v-2.333l-2.768 2.214zm-3.839-4.468c.531.391 1.034.823 1.503 1.292.459.459.883.951 1.267 1.471l4.104-3.284c.269-.257 2.169-2.084 2.916-2.915 1.084-1.208 1.531-3.667 1.681-5.269-1.602.149-4.061.596-5.268 1.68-.832.748-2.658 2.647-2.916 2.916l-3.287 4.109zM5.47 11.154c.414.163.819.347 1.214.551l2.165-2.706H6.548l-1.077 2.154z"
+    />
+  </IconButton>
+);
+
+const Money = () => (
+  <IconButton storageKey={KeyMoneyButton} label="Money">
+    <path
+      className="fill-current"
+      clipRule="evenodd"
+      fillRule="evenodd"
+      d="M16.161 3.55h4.117l-1.924 6.416c1.283 1.091 2.098 2.717 2.098 4.534 0 3.286-2.664 5.95-5.95 5.95h-.22l-.5 2.5h-6.44l.5-2.5H3.227l2.033-6.781C4.204 12.595 3.552 11.124 3.552 9.5c0-3.286 2.664-5.95 5.95-5.95h.22l.5-2.5h6.44zm-4.88 1.9H9.502c-2.237 0-4.05 1.813-4.05 4.05s1.813 4.05 4.05 4.05h5c.525 0 .95.425.95.95s-.425.95-.95.95H6.709l-.93 3.1h4.382l-.5 2.5h2.562l.5-2.5h1.779c2.237 0 4.05-1.813 4.05-4.05s-1.813-4.05-4.05-4.05h-5c-.525 0-.95-.425-.95-.95 0-.525.425-.95.95-.95h7.293l.93-3.1h-3.882l.5-2.5H11.78z"
     />
   </IconButton>
 );
@@ -168,16 +177,16 @@ const XPremium = () => (
   <IconButton storageKey={KeyXPremiumButton} label="Premium">
     <path
       className="fill-current"
-      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      d="M8.52 3.59c.8-1.1 2.04-1.84 3.48-1.84s2.68.74 3.49 1.84c1.34-.21 2.74.14 3.76 1.16s1.37 2.42 1.16 3.77c1.1.8 1.84 2.04 1.84 3.48s-.74 2.68-1.84 3.48c.21 1.34-.14 2.75-1.16 3.77s-2.42 1.37-3.76 1.16c-.8 1.1-2.05 1.84-3.49 1.84s-2.68-.74-3.48-1.84c-1.34.21-2.75-.14-3.77-1.16-1.01-1.02-1.37-2.42-1.16-3.77-1.09-.8-1.84-2.04-1.84-3.48s.75-2.68 1.84-3.48c-.21-1.35.14-2.75 1.16-3.77s2.43-1.37 3.77-1.16zm3.48.16c-.85 0-1.66.53-2.12 1.43l-.38.77-.82-.27c-.96-.32-1.91-.12-2.51.49-.6.6-.8 1.54-.49 2.51l.27.81-.77.39c-.9.46-1.43 1.27-1.43 2.12s.53 1.66 1.43 2.12l.77.39-.27.81c-.31.97-.11 1.91.49 2.51.6.61 1.55.81 2.51.49l.82-.27.38.77c.46.9 1.27 1.43 2.12 1.43s1.66-.53 2.12-1.43l.39-.77.82.27c.96.32 1.9.12 2.51-.49.6-.6.8-1.55.48-2.51l-.26-.81.76-.39c.91-.46 1.43-1.27 1.43-2.12s-.52-1.66-1.43-2.12l-.77-.39.27-.81c.32-.97.12-1.91-.48-2.51-.61-.61-1.55-.81-2.51-.49l-.82.27-.39-.77c-.46-.9-1.27-1.43-2.12-1.43zm4.74 5.68l-6.2 6.77-3.74-3.74 1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36z"
     ></path>
   </IconButton>
 );
 
 const Grok = () => (
-  <IconButton storageKey={KeyGrokButton} label="Grok">
+  <IconButton storageKey={KeyGrokButton} label="Grok" viewBox="0 0 33 32">
     <path
       className="fill-current"
-      d="M2.205 7.423L11.745 21h4.241L6.446 7.423H2.204zm4.237 7.541L2.2 21h4.243l2.12-3.017-2.121-3.02zM16.957 0L9.624 10.435l2.122 3.02L21.2 0h-4.243zm.767 6.456V21H21.2V1.51l-3.476 4.946z"
+      d="M12.745 20.54l10.97-8.19c.539-.4 1.307-.244 1.564.38 1.349 3.288.746 7.241-1.938 9.955-2.683 2.714-6.417 3.31-9.83 1.954l-3.728 1.745c5.347 3.697 11.84 2.782 15.898-1.324 3.219-3.255 4.216-7.692 3.284-11.693l.008.009c-1.351-5.878.332-8.227 3.782-13.031L33 0l-4.54 4.59v-.014L12.743 20.544m-2.263 1.987c-3.837-3.707-3.175-9.446.1-12.755 2.42-2.449 6.388-3.448 9.852-1.979l3.72-1.737c-.67-.49-1.53-1.027-2.515-1.387-4.455-1.854-9.789-.931-13.41 2.728-3.483 3.523-4.579 8.94-2.697 13.561 1.405 3.454-.899 5.898-3.22 8.364C1.49 30.2.666 31.074 0 32l10.478-9.466"
     ></path>
   </IconButton>
 );
@@ -212,19 +221,20 @@ const NavigationSection = () => {
       <SectionLabel htmlFor="user-control-navigation">Left Navigation</SectionLabel>
       <div id="user-control-navigation">
         <form className="p-3 pb-4 dark:bg-x-bgTwoDark bg-x-bgTwo rounded-2xl">
-          <div className="grid grid-cols-5 pb-4 gap-y-2 gap-x-4 mx-auto flex-wrap">
+          <div className="grid grid-cols-4 pb-4 gap-y-2 gap-x-4 mx-auto flex-wrap">
             <Home />
             <Explore />
             <Notifications />
-            <Messages />
+            <Chat />
             <Grok />
-            <Bookmarks />
-            <CreatorStudio />
             <XPremium />
-            <Lists />
+            <Money />
+            <History />
+            <CreatorStudio />
             <Jobs />
-            <Communities />
             <Articles />
+            <Lists />
+            <Communities />
             <Topics />
             <VerifiedOrgs />
             <Profile />
@@ -254,8 +264,6 @@ const NavigationSection = () => {
             </div>
             <SwitchControl label="Center Vertically" storageKey={KeyNavigationCenter} />
             <SwitchControl label="Unread Count Badge" storageKey={KeyUnreadCountBadge} />
-            <SwitchControl label="Hide Grok Drawer Button" storageKey={KeyHideGrokDrawer} />
-            <SwitchControl label="Hide DMs Drawer Button" storageKey={KeyHideMessagesDrawer} />
           </div>
         </form>
       </div>

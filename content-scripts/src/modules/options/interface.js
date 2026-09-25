@@ -286,9 +286,6 @@ export const changeHideSearchBar = (searchBar) => {
           ${selectors.rightSidebar} section[aria-labelledby^="accessible-list-"] {
             top: 12px !important;
           }
-          .mt-recentMedia-photoGrid {
-            top: 12px !important;
-          }
         }`
       );
       break;
@@ -300,9 +297,6 @@ export const changeHideSearchBar = (searchBar) => {
         `@media only screen and (min-width: 1265px) {
           ${selectors.rightSidebar} section[aria-labelledby^="accessible-list-"] {
             top: unset;
-          }
-          .mt-recentMedia-photoGrid {
-            top: unset !important;
           }
         }`
       );
@@ -318,10 +312,8 @@ export const changeTransparentSearchBar = (transparentSearch) => {
         `
         ${selectors.searchBox} > div:nth-child(1) > div {
           background-color: transparent;
-        }
-        ${selectors.searchBoxInput} {
-          transform: translateX(2ch);
-          margin-left: -2.5ch;
+          /* Keep the border's dimensions so toggling this setting never shifts the search layout. */
+          border-color: transparent;
         }
         `
       );

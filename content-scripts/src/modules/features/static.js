@@ -13,8 +13,8 @@ import {
   KeyCustomCss,
   KeyExploreButton,
   KeyFollowCount,
-  KeyFollowingTimeline,
   KeyGrokButton,
+  KeyHideComposer,
   KeyHideGrokDrawer,
   KeyHideMessagesDrawer,
   KeyHideViewCount,
@@ -24,16 +24,12 @@ import {
   KeyLikeCount,
   KeyListsButton,
   KeyMessagesButton,
+  KeyMoneyButton,
   KeyNavigationButtonsLabels,
   KeyNavigationCenter,
   KeyNotificationsButton,
   KeyProfileButton,
-  KeyRecentMedia,
-  KeyRemovePromotedPosts,
-  KeyRemoveTimelineBorders,
   KeyRemoveTimelineTabs,
-  KeyRemoveTopicsToFollow,
-  KeyRemoveTweetBorders,
   KeyReplyCount,
   KeyRetweetCount,
   KeySearchBar,
@@ -65,6 +61,7 @@ import {
   changeJobsButton,
   changeListsButton,
   changeMessagesButton,
+  changeMoneyButton,
   changeNavigationButtonsLabels,
   changeNavigationCenter,
   changeNotificationsButton,
@@ -78,31 +75,26 @@ import {
   hideMessagesDrawer,
 } from "../options/navigation";
 import {
-  changeFollowingTimeline,
+  changeHideComposer,
   changePromotedPosts,
-  changeRecentMedia,
   changeStickyHeader,
-  changeTimelineBorders,
   changeTimelineTabs,
   changeTimelineWidth,
   changeTopicsToFollow,
   changeTrendsHomeTimeline,
-  changeTweetBorders,
 } from "../options/timeline";
 
 export const staticFeatures = {
   timeline: (data) => {
     changeTimelineWidth(data[KeyTimelineWidth]);
-    changeTimelineBorders(data[KeyRemoveTimelineBorders]);
-    changeTweetBorders(data[KeyRemoveTweetBorders]);
     changeStickyHeader(data[KeyStickyHeader]);
-    changeFollowingTimeline(data[KeyFollowingTimeline]);
     changeHideViewCounts(data[KeyHideViewCount]);
-    changeRecentMedia(data[KeyRecentMedia]);
     changeTrendsHomeTimeline(data[KeyTrendsHomeTimeline]);
-    changePromotedPosts(data[KeyRemovePromotedPosts]);
-    changeTopicsToFollow(data[KeyRemoveTopicsToFollow]);
+    // Promoted posts and Topics-to-Follow are always hidden (no user toggle)
+    changePromotedPosts("on");
+    changeTopicsToFollow("on");
     changeTimelineTabs(data[KeyRemoveTimelineTabs]);
+    changeHideComposer(data[KeyHideComposer]);
     changeFollowingAndFollowersCounts(data[KeyFollowCount]);
     changeReplyCount(data[KeyReplyCount]);
     changeRetweetCount(data[KeyRetweetCount]);
@@ -133,6 +125,7 @@ export const staticFeatures = {
     changeCreatorStudioButton(data[KeyCreatorStudioButton]);
     changeJobsButton(data[KeyJobsButton]);
     changeArticlesButton(data[KeyArticlesButton]);
+    changeMoneyButton(data[KeyMoneyButton]);
     changeCommunitiesButton(data[KeyCommunitiesButton]);
     changeTopicsButton(data[KeyTopicsButton]);
     changeListsButton(data[KeyListsButton]);

@@ -4,7 +4,17 @@ const selectors = {};
 selectors.mainWrapper = `main[role="main"]`;
 selectors.mainColumn = `[data-testid="primaryColumn"]`;
 selectors.topHeader = `${selectors.mainColumn} > div > div:nth-of-type(1)`;
-selectors.timelineTabs = `${selectors.mainColumn} > div:first-child > div:first-child > div:first-child > div:only-child > nav:only-child`;
+// Entire timeline tab header (tabs + scroll arrows + Manage timelines button + the bar itself).
+// Kept as separate single-level :has() selectors (never nested, never comma-joined) so one
+// failing selector can't invalidate the others. The tab conditions exclude the composer
+// toolbar, which reuses the same ScrollSnap testids but has no real tabs.
+selectors.timelineTabs = `${selectors.mainColumn} > div > div:has(> div > div > div > div > nav div[data-testid="ScrollSnap-List"]):has(div[role="tab"])`;
+selectors.timelineTabsList = `${selectors.mainColumn} div[data-testid="ScrollSnap-List"][role="tablist"]:has(div[role="tab"])`;
+selectors.manageTimelinesButton = `${selectors.mainColumn} button:has(path[d="M11 11V4h2v7h7v2h-7v7h-2v-7H4v-2h7z"])`;
+// Home timeline post composer ("What's happening?" box). Pinned to the depth-2 block
+// containing the textbox so reply/modal composers (nested deeper, outside primaryColumn)
+// can never match. The + div:empty covers the empty divider right after it.
+selectors.composerBox = `${selectors.mainColumn} > div > div:has(div[data-testid="tweetTextarea_0"])`;
 selectors.leftSidebar = `header[role="banner"]`;
 selectors.leftSidebarLinks = `${selectors.leftSidebar} nav[role="navigation"]`;
 selectors.leftSidebarUnreadBadge = `${selectors.leftSidebarLinks} a svg + div[aria-label]:only-of-type`;
@@ -18,6 +28,7 @@ selectors.sidebarLinks = {
   creatorStudio: `${selectors.leftSidebar} a[href*="/i/jf/creators/studio"][role="link"][aria-label]`,
   jobs: `${selectors.leftSidebar} a[href*="jobs"]`,
   articles: 'a[href="/compose/articles"]',
+  money: `${selectors.leftSidebar} a[href*="/i/money"]`,
   topics: `${selectors.leftSidebar} a[href*=topics]`,
   circles: `${selectors.leftSidebar} a[href*=circles]`,
   communities: `${selectors.leftSidebar} a[href*=communities]`,
@@ -42,9 +53,6 @@ selectors.messagesDrawerLegacy = `[data-testid="DMDrawer"]`;
 // Timeline
 selectors.timelineTablist = `div[data-testid='ScrollSnap-List'][role='tablist']`;
 selectors.timelineTab = `div[role='tab']`;
-selectors.timelineTabPresentation = `div[role='presentation']`;
-selectors.timelineTabSelected = `div[role='tab'][aria-selected='true']`;
-selectors.timelineTabText = `div[dir='ltr'] > span`;
 selectors.timelineOptions = `div[aria-label='Timeline options']`;
 selectors.topTweetsOn = `div[aria-label='Top Tweets on']`;
 selectors.menuItem = `div[role='menuitem'][tabindex='0']`;

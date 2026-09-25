@@ -23,11 +23,15 @@ const StyledSegmentedControlTrigger = styled(TabsPrimitive.Trigger, {
   cursor: 'pointer',
   transition: 'all 0.2s ease',
   color: '#536471',
-  
+
   '&[data-state="active"]': {
     backgroundColor: '#fff',
     color: '#1da1f2',
     fontWeight: 'bold',
+  },
+
+  '&:disabled': {
+    cursor: 'not-allowed',
   }
 });
 
@@ -37,21 +41,21 @@ const StyledSegmentedControlRoot = styled(TabsPrimitive.Root, {
   overflow: 'hidden',
 });
 
-export const SegmentedControlList = ({ segments }) => (
+export const SegmentedControlList = ({ segments, disabled }) => (
   <StyledSegmentedControlList>
     {segments.map((segment) => (
-      <SegmentedControlTrigger key={segment.value} value={segment.value} label={segment.label} />
+      <SegmentedControlTrigger key={segment.value} value={segment.value} label={segment.label} disabled={disabled} />
     ))}
   </StyledSegmentedControlList>
 );
 
-export const SegmentedControlTrigger = ({ value, label }) => (
-  <StyledSegmentedControlTrigger value={value}>
+export const SegmentedControlTrigger = ({ value, label, disabled }) => (
+  <StyledSegmentedControlTrigger value={value} disabled={disabled}>
     {label}
   </StyledSegmentedControlTrigger>
 );
 
-export const SegmentedControl = ({ segments = [], storageKey }) => {
+export const SegmentedControl = ({ segments = [], storageKey, disabled }) => {
   const [value, setValue] = useState(null);
   
   useEffect(() => {
@@ -80,7 +84,7 @@ export const SegmentedControl = ({ segments = [], storageKey }) => {
       onValueChange={handleValueChange}
       defaultValue={segments[0].value}
     >
-      <SegmentedControlList segments={segments} />
+      <SegmentedControlList segments={segments} disabled={disabled} />
     </StyledSegmentedControlRoot>
   );
 };

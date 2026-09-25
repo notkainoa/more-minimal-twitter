@@ -1,4 +1,4 @@
-import { KeyHideGrokDrawer, KeyRecentMedia } from "../../../../storage-keys";
+import { KeyHideGrokDrawer } from "../../../../storage-keys";
 import selectors from "../../selectors";
 import addStyles, { removeStyles, stylesExist } from "../utilities/addStyles";
 import { getStorage } from "../utilities/storage";
@@ -72,49 +72,6 @@ export const changeTimelineWidth = (timelineWidth) => {
           }
         }
         `
-      );
-      break;
-  }
-};
-
-export const changeTimelineBorders = (timelineBorders) => {
-  switch (timelineBorders) {
-    case "off":
-      removeStyles("timelineBorders");
-      break;
-
-    case "on":
-      addStyles(
-        "timelineBorders",
-        `
-        @media only screen and (min-width: 988px) {
-          div${selectors.mainColumn} {
-            border-style: hidden;
-          }
-        }
-        `.trim()
-      );
-      break;
-  }
-};
-
-export const changeTweetBorders = (tweetBorders) => {
-  switch (tweetBorders) {
-    case "off":
-      removeStyles("tweetBorders");
-      break;
-
-    case "on":
-      addStyles(
-        "tweetBorders",
-        `
-        ${selectors.mainWrapper} section > div > div > div > div[role="separator"] {
-          display: none;
-        }
-        ${selectors.mainColumn} > div > div:empty {
-          background: transparent;
-        }
-        `.trim()
       );
       break;
   }
@@ -202,64 +159,44 @@ export const changeTimelineTabs = (removeTimelineTabs) => {
         ${selectors.timelineTabs} {
           display: none;
         }
+        ${selectors.timelineTabsList} {
+          display: none;
+        }
+        ${selectors.manageTimelinesButton} {
+          display: none;
+        }
         `
       );
       break;
   }
 };
 
-export const changeRecentMedia = async (recentMedia) => {
-  const userProfile = document.querySelector('meta[content*="twitter://user?screen_name="]');
-
-  if (!userProfile) {
-    removeStyles("recentMedia");
+export const changeHideComposer = (hideComposer) => {
+  if (window.location.pathname.includes("compose/tweet") || (window.location.pathname !== "/" && !window.location.pathname.includes("/home"))) {
+    removeStyles("hideComposer");
     return;
   }
 
-  const sidebarPhotoGrid = document
-    .querySelector(selectors.rightSidebar)
-    ?.querySelector('[aria-label][tabindex="0"]')
-    ?.querySelector('[style="padding-bottom: 56.25%;"]')?.parentElement;
+  switch (hideComposer) {
+    case "off":
+      removeStyles("hideComposer");
+      break;
 
-  if (!sidebarPhotoGrid) return;
+    case "on":
+      if (stylesExist("hideComposer")) return;
 
-  const run = (rm) => {
-    switch (rm) {
-      case "off":
-        removeStyles("recentMedia");
-        sidebarPhotoGrid.classList.remove("mt-recentMedia-photoGrid");
-        break;
-
-      case "on":
-        addStyles(
-          "recentMedia",
-          `
-            @media only screen and (min-width: 1265px) {
-              .mt-recentMedia-photoGrid {
-                visibility: visible;
-                position: fixed;
-                right: 16px;
-                top: 70px;
-                width: 300px;
-              }
-              
-              [data-testid="primaryColumn"] {
-                transform: translateX(-64px);
-              }
-            }
-            `
-        );
-        sidebarPhotoGrid.classList.add("mt-recentMedia-photoGrid");
-
-        break;
-    }
-  };
-
-  if (recentMedia) {
-    run(recentMedia);
-  } else {
-    const setting = await getStorage(KeyRecentMedia);
-    run(setting);
+      addStyles(
+        "hideComposer",
+        `
+        ${selectors.composerBox} {
+          display: none;
+        }
+        ${selectors.composerBox} + div:empty {
+          display: none;
+        }
+        `
+      );
+      break;
   }
 };
 
@@ -319,32 +256,6 @@ export const changeTrendsHomeTimeline = (trendsHomeTimeline) => {
       );
       break;
   }
-};
-
-export const changeFollowingTimeline = (followingTimeline) => {
-  if (followingTimeline !== "on") return;
-
-  const tablist = document.querySelector(selectors.timelineTablist);
-  const selectedTab = document.querySelector(`${selectors.timelineTablist} ${selectors.timelineTabSelected}`);
-
-  if (!tablist || !selectedTab) return;
-
-  // Get localized "Following" text (it's the second tab)
-  const followingTabSpan = tablist.querySelector(`${selectors.timelineTabPresentation}:nth-of-type(2) span`);
-  if (!followingTabSpan) return;
-
-  const followingTabText = followingTabSpan.textContent.toLowerCase();
-  const selectedTabSpan = selectedTab.querySelector(selectors.timelineTabText);
-  if (!selectedTabSpan) return;
-
-  const selectedTabText = selectedTabSpan.textContent.toLowerCase();
-
-  if (selectedTabText === followingTabText) return; // Already on the "Following" tab
-
-  const secondTab = tablist.querySelector(`${selectors.timelineTabPresentation}:nth-child(2) ${selectors.timelineTab}`);
-  if (!secondTab) return;
-
-  secondTab.click();
 };
 
 let lt1; // Latest Tweets timeout 1
