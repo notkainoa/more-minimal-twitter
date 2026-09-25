@@ -115,9 +115,9 @@ export const defaultPreferences = {
 
   // Navigation Features
   [KeySidebarLogo]: "off",
-  [KeyNavigationButtonsLabels]: "never",
-  [KeyNavigationCenter]: "off",
-  [KeyUnreadCountBadge]: "off",
+  [KeyNavigationButtonsLabels]: "hover",
+  [KeyNavigationCenter]: "on",
+  [KeyUnreadCountBadge]: "on",
   [KeyHideGrokDrawer]: "on",
   [KeyHideMessagesDrawer]: "on",
 
